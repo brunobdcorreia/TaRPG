@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="RPGproject.CreateCharacter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RPGproject"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,26,0,0" Text="Character Creation" FontSize="80" FontFamily="Incosolata" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,117,0,0" Text="Choose your attributes" FontFamily="Comic Sans" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-290,247,0,0" Text="Strength:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-295,320,0,0" Text="Dexterity:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-350,393,0,0" Text="Constitution:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-340,466,0,0" Text="Intelligence:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-290,539,0,0" Text="Wisdom:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-300,612,0,0" Text="Charisma:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="Strength" HorizontalAlignment="Center" Margin="70,262,0,0" Text="" VerticalAlignment="Top" Width="206"/>
+        <TextBox x:Name="Dexterity" HorizontalAlignment="Center" Margin="70,627,0,0" Text="" VerticalAlignment="Top" Width="206"/>
+        <TextBox x:Name="Constitution" HorizontalAlignment="Center" Margin="70,554,0,0" Text="" VerticalAlignment="Top" Width="206"/>
+        <TextBox x:Name="Intelligence" HorizontalAlignment="Center" Margin="70,481,0,0" Text="" VerticalAlignment="Top" Width="206"/>
+        <TextBox x:Name="Wisdom" HorizontalAlignment="Center" Margin="70, 408,0,0" Text="" VerticalAlignment="Top" Width="206"/>
+        <TextBox x:Name="Charisma" HorizontalAlignment="Center" Margin="70,333,0,0" Text="" VerticalAlignment="Top" Width="206"/>
+        <Button Content="Next" Margin="0,701,0,0" VerticalAlignment="Top" Width="166" HorizontalAlignment="Center" Style="{StaticResource CustomButton}" Background="DarkRed" BorderBrush="Black" Height="29" Click="Button_Click"/>
+
+
+        <!--<TextBox HorizontalAlignment="Center" Margin="0,105,0,0" Text="" VerticalAlignment="Top" Height="27" Width="287"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,109,0,0" Text="Name: " TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,171,0,0" Text="Race: " TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
+        <ComboBox x:Name="RaceSelector" Header="Choose a race" ItemsSource="{x:Bind Races}" Margin="0,137,0,0" Width="120" HorizontalAlignment="Center"/>
+        <ComboBox x:Name="ClassSelector" Header="Choose a class" ItemsSource="{x:Bind Classes}" Margin="0,197,0,0" Width="120" HorizontalAlignment="Center"/> -->
+
+    </Grid>
+</Page>
