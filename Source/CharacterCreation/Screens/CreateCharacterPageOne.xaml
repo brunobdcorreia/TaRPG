@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="RPGproject.CreateCharacterPageOne"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RPGproject"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,26,0,0" Text="Character Creation" FontSize="80" FontFamily="Incosolata" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Header="Character name:" Margin="0,164,0,0" Text="" VerticalAlignment="Top" Height="53" Width="287"/>
+        <ComboBox x:Name="RaceSelector" Header="Choose a race" ItemsSource="{x:Bind Races}" Margin="0,222,0,0" Width="286" HorizontalAlignment="Center"/>
+        <ComboBox x:Name="ClassSelector" Header="Choose a class" ItemsSource="{x:Bind Classes}" Margin="0,277,0,0" Width="286" HorizontalAlignment="Center"/>
+        <TextBox x:Name="CharacterAge" Header="Character age:" HorizontalAlignment="Center" Margin="0,337,0,0" Text="" VerticalAlignment="Top" Width="286" Height="53" BeforeTextChanging="CharacterAge_BeforeChanging"/>
+        <TextBox x:Name="CharacterHeight" Header="Character height (In centimeters):" HorizontalAlignment="Center" Margin="0,393,0,0" Text="" VerticalAlignment="Top" Width="286" Height="53" BeforeTextChanging="CharacterHeight_BeforeChanging"/>
+        <TextBox x:Name="CharacterWeight" Header="Character weight:" HorizontalAlignment="Center" Margin="0,451,0,0" Text="" VerticalAlignment="Top" Width="286" Height="53" BeforeTextChanging="CharacterWeight_BeforeChanging"/>
+        <Button x:Name="NextButton" Content="Next" FontSize="24" Style="{StaticResource CustomButton}" Background="DarkRed" HorizontalAlignment="Center" Height="34" Width="251" Click="NextButton_Click" Margin="0,535,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BackButton" Content="Back" FontSize="24" Style="{StaticResource ResourceKey=CustomButton}" Background="DarkRed" HorizontalAlignment="Center" Height="34" Width="251" Margin="0,574,0,0" VerticalAlignment="Top" Click="BackButton_Click"/>
+    </Grid>
+</Page>
