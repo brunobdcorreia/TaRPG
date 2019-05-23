@@ -13,14 +13,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace RPGproject
 {    
     public sealed partial class CreateCharacterPageOne : Page
     {
-        public List<String> Races = new List<String>();
-        public List<String> Classes = new List<String>();
+        private List<String> Races = new List<String>();
+        private List<String> Classes = new List<String>();
         public CreateCharacterPageOne()
         {
             this.InitializeComponent();
@@ -59,13 +58,40 @@ namespace RPGproject
 
         private void CharacterAge_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            PreventNonNumericInput(args);
         }
 
-        private void CharacterHeight_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        private void CharacterHeightFeet_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            PreventNonNumericInput(args);
         }
+        private void CharacterHeightInches_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
+        {
+            PreventNonNumericInput(args);
+
+            try
+            {
+                int newValue = int.Parse(args.NewText);
+
+                if (newValue > 11)
+                {
+                    newValue = 11;
+                    CharacterHeightInches.Text = newValue.ToString();
+                }
+
+                else if (newValue < 0)
+                {
+                    newValue = 0;
+                    CharacterHeightInches.Text = newValue.ToString();
+                }
+            }
+
+            catch (System.FormatException ex)
+            {
+                args.Cancel = true;
+            }
+        }
+
         private void CharacterWeight_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             foreach(char c in args.NewText)
@@ -77,6 +103,15 @@ namespace RPGproject
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
+            /* var raceSelectorComboBoxItem = RaceSelector.SelectedItem as ComboBoxItem;
+            var classSelectorComboBoxItem = ClassSelector.SelectedItem as ComboBoxItem;
+
+            if(CharacterName.Text == "" || CharacterHeight.Text == "" || CharacterAge.Text == "" || CharacterWeight.Text == "" || raceSelectorComboBoxItem == null || classSelectorComboBoxItem == null)
+            {
+                DisplayBlankValueWarning();
+                return;
+            } */
+
             int punctuated = 0;
 
             foreach(char c in CharacterWeight.Text)
@@ -97,6 +132,19 @@ namespace RPGproject
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             DisplayCancelCharacterCreationConfirmation();         
+        }
+
+        private async void DisplayBlankValueWarning()
+        {
+
+            ContentDialog blankValue = new ContentDialog
+            {
+                Title = "One or more fields have no value",
+                Content = "All fields must have a value.",
+                CloseButtonText = "Ok."
+            };
+
+            ContentDialogResult result = await blankValue.ShowAsync(); 
         }
 
         private async void DisplayInvalidWeightValueWarning()
@@ -129,5 +177,86 @@ namespace RPGproject
             }
         }
 
+        private void PlusFeet_Click(object sender, RoutedEventArgs e)
+        {
+            IncrementFeet();
+        }
+        private void PlusFeetCallback(object sender, PointerRoutedEventArgs e)
+        {
+            PlusFeet_Click(sender, new RoutedEventArgs());
+        }
+
+        private void MinusFeet_Click(object sender, RoutedEventArgs e)
+        {
+            DecrementFeet();
+        }
+
+        private void MinusFeetCallback(object sender, PointerRoutedEventArgs e)
+        {
+            MinusFeet_Click(sender, new RoutedEventArgs());
+        }
+
+        private void PlusInches_Click(object sender, RoutedEventArgs e)
+        {
+            IncrementInch();
+        }
+
+        private void PlusInchCallback(object sender, PointerRoutedEventArgs e)
+        {
+            PlusInches_Click(sender, new RoutedEventArgs());
+        }
+
+        private void MinusInches_Click(object sender, RoutedEventArgs e)
+        {
+            DecrementInch();
+        }
+        private void MinusInchCallback(object sender, PointerRoutedEventArgs e)
+        {
+            MinusInches_Click(sender, new RoutedEventArgs());
+        }
+
+        private void PreventNonNumericInput(TextBoxBeforeTextChangingEventArgs args)
+        {
+            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        private void IncrementFeet()
+        {
+            int newValue = int.Parse(CharacterHeightFeet.Text) + 1;
+
+            if (newValue >= 0)
+                CharacterHeightFeet.Text = newValue.ToString();
+        }
+
+        private void DecrementFeet()
+        {
+            int newValue = int.Parse(CharacterHeightFeet.Text) - 1;
+
+            if (newValue >= 0)
+                CharacterHeightFeet.Text = newValue.ToString();
+        }
+
+        private void IncrementInch()
+        {
+            int newValue = int.Parse(CharacterHeightInches.Text) + 1;
+
+            if (newValue > 11)
+            { 
+                newValue = 0;
+                CharacterHeightInches.Text = newValue.ToString();
+                IncrementFeet();
+            }
+
+            else if (newValue >= 0 && newValue <= 11)
+                CharacterHeightInches.Text = newValue.ToString();
+        }
+
+        private void DecrementInch()
+        {
+            int newValue = int.Parse(CharacterHeightInches.Text) - 1;
+
+            if (newValue >= 0)
+                CharacterHeightInches.Text = newValue.ToString();
+        }
     }
 }
