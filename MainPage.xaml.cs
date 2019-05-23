@@ -35,7 +35,7 @@ namespace RPGproject
 
         private void CriarPersonagem(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateCharacter));
+            this.Frame.Navigate(typeof(CreateCharacterPageOne));
         }
     }
 }

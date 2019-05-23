@@ -12,7 +12,7 @@
     <DefaultLanguage>pt-BR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -119,31 +119,34 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Attributes.cs" />
-    <Compile Include="Background.cs" />
-    <Compile Include="Campanha.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="Class.cs" />
-    <Compile Include="Condition.cs" />
-    <Compile Include="CriarCampanha.xaml.cs">
-      <DependentUpon>CriarCampanha.xaml</DependentUpon>
+    <Compile Include="Source\CharacterCreation\Attributes.cs" />
+    <Compile Include="Source\CharacterCreation\Background.cs" />
+    <Compile Include="Source\CampaignCreation\Campaign.cs" />
+    <Compile Include="Source\CharacterCreation\Character.cs" />
+    <Compile Include="Source\CharacterCreation\Class.cs" />
+    <Compile Include="Source\CharacterCreation\Condition.cs" />
+    <Compile Include="Source\CharacterCreation\Screens\CreateCharacterPageOne.xaml.cs">
+      <DependentUpon>CreateCharacterPageOne.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateCharacter.xaml.cs">
-      <DependentUpon>CreateCharacter.xaml</DependentUpon>
+    <Compile Include="Source\CampaignCreation\Screens\CreateCampaign.xaml.cs">
+      <DependentUpon>CreateCampaign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\CharacterCreation\Screens\CreateCharacterPageTwo.xaml.cs">
+      <DependentUpon>CreateCharacterPageTwo.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataAccess.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Feat.cs" />
+    <Compile Include="Source\CharacterCreation\Entity.cs" />
+    <Compile Include="Source\CharacterCreation\Feat.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Race.cs" />
-    <Compile Include="ResumoCampanha.xaml.cs">
-      <DependentUpon>ResumoCampanha.xaml</DependentUpon>
+    <Compile Include="Source\CharacterCreation\Race.cs" />
+    <Compile Include="Source\CampaignCreation\Screens\CampaignSummary.xaml.cs">
+      <DependentUpon>CampaignSummary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SavingThrow.cs" />
-    <Compile Include="Skill.cs" />
+    <Compile Include="Source\CharacterCreation\SavingThrow.cs" />
+    <Compile Include="Source\CharacterCreation\Skill.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -166,11 +169,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CriarCampanha.xaml">
+    <Page Include="Source\CharacterCreation\Screens\CreateCharacterPageOne.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateCharacter.xaml">
+    <Page Include="Source\CampaignCreation\Screens\CreateCampaign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\CharacterCreation\Screens\CreateCharacterPageTwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,7 +189,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ResumoCampanha.xaml">
+    <Page Include="Source\CampaignCreation\Screens\CampaignSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +202,7 @@
       <Version>6.2.8</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
