@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGproject.Source.UserData;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,7 +31,6 @@ namespace RPGproject
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            DataAccess.InitializeDatabase();
         }
 
         /// <summary>

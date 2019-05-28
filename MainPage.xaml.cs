@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RPGproject.Source.CharacterCreation;
+using RPGproject.Source.UserData.Screens;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -33,9 +35,14 @@ namespace RPGproject
             this.Frame.Navigate(typeof(CriarCampanha));
         }
 
-        private void CriarPersonagem(object sender, RoutedEventArgs e)
+        private void CreateCharacter(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(CreateCharacterPageOne));
+        }
+
+        private void ViewCreatedCharacters(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreatedCharactersPage));
         }
     }
 }
