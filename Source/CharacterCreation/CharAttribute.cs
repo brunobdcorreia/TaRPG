@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RPGproject.Source.CharacterCreation
 {
-    public class Feat
+    public class CharAttribute
     {
         private String Name { get; }
-        private String Description { get; }
-        
-        public Feat(String Name, String Description)
+        private int Value { get; set; }
+
+        public CharAttribute(String Name, int Value)
         {
             this.Name = Name;
-            this.Description = Description;
+            this.Value = Value;
         }
     }
 }

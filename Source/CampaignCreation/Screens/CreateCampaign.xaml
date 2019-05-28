@@ -13,7 +13,7 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" TextAlignment="Center" Text="Nome da Campanha" FontSize="30"  TextWrapping="Wrap" Height="35" Width="340"/>
         <TextBox x:Name="NomeDaCampanha" Background="DarkRed" Foreground="White" HorizontalAlignment="Center" Margin="0,56,0,0" Text="" Height="31" Width="439"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" TextAlignment="Center" Text="Número de jogadores" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="328"/>
-        <ComboBox x:Name="NumJogadores" ItemsSource="{x:Bind Path=OpcoesNumeroJogadores}" Margin="0,56,0,0" Width="120" HorizontalAlignment="Center" SelectionChanged="NumJogadores_SelectionChanged"/>
+        <ComboBox x:Name="NumJogadores" ItemsSource="{x:Bind Path=playerNumberOptions}" Margin="0,56,0,0" Width="120" HorizontalAlignment="Center" SelectionChanged="NumJogadores_SelectionChanged"/>
         <Button x:Name="CriaCampanha"  Content="Criar" Background="DarkRed" Margin="0,56,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource CustomButton}" Height="35" Width="153" Click="Button_Click"/>
     </StackPanel>
 </Page>

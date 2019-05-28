@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="RPGproject.CreateCharacterPageTwo"
+    x:Class="RPGproject.Source.CharacterCreation.CreateCharacterPageTwo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RPGproject"
@@ -17,14 +17,15 @@
         <TextBlock HorizontalAlignment="Center" Margin="-340,466,0,0" Text="Intelligence:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-290,539,0,0" Text="Wisdom:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-300,612,0,0" Text="Charisma:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="Strength" HorizontalAlignment="Center" Margin="70,262,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="206" BeforeTextChanging="Strength_BeforeChanging"/>
-        <TextBox x:Name="Charisma" HorizontalAlignment="Center" Margin="70,627,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="206" BeforeTextChanging="Charisma_BeforeChanging"/>
-        <TextBox x:Name="Wisdom" HorizontalAlignment="Center" Margin="70,554,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="206" BeforeTextChanging="Wisdom_BeforeChanging"/>
-        <TextBox x:Name="Intelligence" HorizontalAlignment="Center" Margin="70,481,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="206" BeforeTextChanging="Intelligence_BeforeChanging"/>
-        <TextBox x:Name="Constitution" HorizontalAlignment="Center" Margin="70, 408,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="206" BeforeTextChanging="Constitution_BeforeChanging"/>
-        <TextBox x:Name="Dexterity" HorizontalAlignment="Center" Margin="70,333,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="206" BeforeTextChanging="Dexterity_BeforeChanging"/>
+        <TextBox x:Name="Strength" HorizontalAlignment="Center" Margin="0,262,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Strength_BeforeChanging"/>
+        <TextBox x:Name="Charisma" HorizontalAlignment="Center" Margin="0,627,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Charisma_BeforeChanging"/>
+        <TextBox x:Name="Wisdom" HorizontalAlignment="Center" Margin="0,554,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Wisdom_BeforeChanging"/>
+        <TextBox x:Name="Intelligence" HorizontalAlignment="Center" Margin="0,480,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Intelligence_BeforeChanging"/>
+        <TextBox x:Name="Constitution" HorizontalAlignment="Center" Margin="0,408,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Constitution_BeforeChanging"/>
+        <TextBox x:Name="Dexterity" HorizontalAlignment="Center" Margin="0,333,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Dexterity_BeforeChanging"/>
         <Button Content="Next" Margin="857,685,0,0" VerticalAlignment="Top" Width="276" Style="{StaticResource CustomButton}" Background="DarkRed" FontSize="34" BorderBrush="Black" Height="54" Click="NextButton_Clicked"/>
         <Button Content="Back" Margin="857,763,0,0" VerticalAlignment="Top" Width="276" Style="{StaticResource CustomButton}" Background="DarkRed" FontSize="34" BorderBrush="Black" Height="54" Click="BackButton_Clicked"/>
+        <Button Content="Roll" Margin="1056,443,0,0" VerticalAlignment="Top" Style="{StaticResource CustomButton}" Background="DarkRed" Width="150" Height="70" FontSize="36" Click="RollAttributes"/>
 
 
         <!--<TextBox HorizontalAlignment="Center" Margin="0,105,0,0" Text="" VerticalAlignment="Top" Height="27" Width="287"/>

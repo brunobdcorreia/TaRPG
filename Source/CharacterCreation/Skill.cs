@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGproject.CharacterCreation
+namespace RPGproject.Source.CharacterCreation
 {
     public class Skill
     {

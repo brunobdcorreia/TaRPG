@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGproject.Source.UserData;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -18,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 // O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace RPGproject
+namespace RPGproject.Source.CharacterCreation
 {
     public sealed partial class CreateCharacterPageTwo : Page
     {
@@ -36,14 +37,46 @@ namespace RPGproject
 
             else
             {
-                Debug.WriteLine("Strength: " + Strength.Text);
-                Debug.WriteLine("Dexterity: " + Dexterity.Text);
-                Debug.WriteLine("Constitution: " + Constitution.Text);
-                Debug.WriteLine("Intelligence: " + Intelligence.Text);
-                Debug.WriteLine("Wisdom: " + Wisdom.Text);
-                Debug.WriteLine("Charisma: " + Charisma.Text);
+
+                RequestUserConfirmation();
             }
         }      
+
+        private async void RequestUserConfirmation()
+        {
+            ContentDialog requestConfirmation = new ContentDialog()
+            {
+                Title = "Confirm character creation",
+                Content = "Are you sure you want to create this character?",
+                PrimaryButtonText = "Yes!",
+                SecondaryButtonText = "No, wait!"
+            };
+
+            ContentDialogResult result = await requestConfirmation.ShowAsync();
+
+            if(result == ContentDialogResult.Primary)
+            {
+                List<CharAttribute> charAttributes = CreateAttributeList();
+
+                if (charAttributes != null)
+                    CharacterModel.GetCharacterModel.Attributes = charAttributes;
+                else
+                {
+                    DisplayInvalidValueWarning();
+                    return;
+                }
+
+                CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);
+                Debug.WriteLine("Character age: " + CharacterModel.GetCharacterModel.Age);
+                //Debug.WriteLine("Number of created characters: " + CreatedCharacters.UserCharacters.Count);               
+
+                this.Frame.Navigate(typeof(MainPage));
+
+                //CharacterDBLinker.InitializeDatabase();
+                //CharacterDBLinker.AddCharacter(CharacterModel.GetCharacterModel);
+            }
+        }
+
         private void BackButton_Clicked(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(CreateCharacterPageOne));
@@ -51,32 +84,49 @@ namespace RPGproject
 
         private void Strength_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            PreventNonNumericInput(args);
         }
 
         private void Dexterity_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            PreventNonNumericInput(args);
         }
 
         private void Constitution_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            PreventNonNumericInput(args);
         }
+
 
         private void Intelligence_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            PreventNonNumericInput(args);
         }
 
         private void Wisdom_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
-            args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+            PreventNonNumericInput(args);
         }
 
         private void Charisma_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
+            PreventNonNumericInput(args);
+        }
+        private static void PreventNonNumericInput(TextBoxBeforeTextChangingEventArgs args)
+        {
             args.Cancel = args.NewText.Any(c => !char.IsDigit(c));
+        }
+
+        private async void DisplayInvalidValueWarning()
+        {
+            ContentDialog invalidValueDialog = new ContentDialog
+            {
+                Title = "Invalid value",
+                Content = "One of the attribute values is invalid. Make sure the values are numerical and have no spaces or other characters surrounding them.",
+                CloseButtonText = "Ok"
+            };
+
+            ContentDialogResult result = await invalidValueDialog.ShowAsync();
         }
 
         private async void DisplayBlankValueWarning()
@@ -104,8 +154,48 @@ namespace RPGproject
             ContentDialogResult result = await cancelCharacterCreation.ShowAsync();
 
             if(result == ContentDialogResult.Primary)
-            {
+            {             
                 this.Frame.Navigate(typeof(MainPage));
+            }
+        }
+
+        private void RollAttributes(object sender, RoutedEventArgs e)
+        {
+            Random rand = new Random();
+            Strength.Text = rand.Next(1, 13).ToString();
+            Dexterity.Text = rand.Next(1, 13).ToString();
+            Constitution.Text = rand.Next(1, 13).ToString();
+            Intelligence.Text = rand.Next(1, 13).ToString();
+            Wisdom.Text = rand.Next(1, 13).ToString();
+            Charisma.Text = rand.Next(1, 13).ToString();
+        }
+
+        private List<CharAttribute> CreateAttributeList()
+        {
+            try
+            {
+                CharAttribute strength = new CharAttribute("Strength", int.Parse(Strength.Text));
+                CharAttribute dexterity = new CharAttribute("Dexterity", int.Parse(Dexterity.Text));
+                CharAttribute constitution = new CharAttribute("Constitution", int.Parse(Constitution.Text));
+                CharAttribute intelligence = new CharAttribute("Intelligence", int.Parse(Intelligence.Text));
+                CharAttribute wisdom = new CharAttribute("Wisdom", int.Parse(Wisdom.Text));
+                CharAttribute charisma = new CharAttribute("Charisma", int.Parse(Charisma.Text));
+
+                List<CharAttribute> charAttributes = new List<CharAttribute>();
+
+                charAttributes.Add(strength);
+                charAttributes.Add(dexterity);
+                charAttributes.Add(constitution);
+                charAttributes.Add(intelligence);
+                charAttributes.Add(wisdom);
+                charAttributes.Add(charisma);
+
+                return charAttributes;
+            }
+
+            catch(System.FormatException ex)
+            {
+                return null;
             }
         }
     }

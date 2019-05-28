@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -14,46 +15,20 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 
-namespace RPGproject
+namespace RPGproject.Source.CharacterCreation
 {    
     public sealed partial class CreateCharacterPageOne : Page
     {
-        private List<String> Races = new List<String>();
-        private List<String> Classes = new List<String>();
+        //private List<String> characterRaces = new List<String>();
+        //private List<String> characterClasses = new List<String>();
+        CharacterModel charModel = new CharacterModel();
         public CreateCharacterPageOne()
         {
             this.InitializeComponent();
-            LoadRaces();
-            LoadClasses();
-        }
-
-        private void LoadClasses()
-        {
-            Classes.Add("Barbarian");
-            Classes.Add("Bard");
-            Classes.Add("Cleric");
-            Classes.Add("Druid");
-            Classes.Add("Fighter");
-            Classes.Add("Monk");
-            Classes.Add("Paladin");
-            Classes.Add("Ranger");
-            Classes.Add("Rogue");
-            Classes.Add("Sorcerer");
-            Classes.Add("Warlock");
-            Classes.Add("Wizard");
-        }
-
-        private void LoadRaces()
-        {
-            Races.Add("Dragonborn");
-            Races.Add("Dwarf");
-            Races.Add("Elf");
-            Races.Add("Gnome");
-            Races.Add("Half Elf");
-            Races.Add("Half Orc");
-            Races.Add("Halfling");
-            Races.Add("Human");
-            Races.Add("Tiefling");
+            StandardLoader loader = new StandardLoader();
+            loader.LoadStandardValues();
+            this.RaceSelector.SetBinding(ComboBox.ItemsSourceProperty, new Binding() { Source = loader.GetCharRaces() });
+            this.ClassSelector.SetBinding(ComboBox.ItemsSourceProperty, new Binding() { Source = loader.GetCharClasses() });
         }
 
         private void CharacterAge_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
@@ -96,37 +71,95 @@ namespace RPGproject
         {
             foreach(char c in args.NewText)
             {
-                if(!char.IsDigit(c) && c != ',' && c != '.')
+                if(!char.IsDigit(c) && c != '.')
                     args.Cancel = true;
             }
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            /* var raceSelectorComboBoxItem = RaceSelector.SelectedItem as ComboBoxItem;
-            var classSelectorComboBoxItem = ClassSelector.SelectedItem as ComboBoxItem;
 
-            if(CharacterName.Text == "" || CharacterHeight.Text == "" || CharacterAge.Text == "" || CharacterWeight.Text == "" || raceSelectorComboBoxItem == null || classSelectorComboBoxItem == null)
+            if (CharacterName.Text == "" || CharacterName.Text[0] == ' ' || CharacterAge.Text == "" || CharacterWeight.Text == "" || (CharacterHeightFeet.Text == "0"
+            && CharacterHeightInches.Text == "0"))
             {
                 DisplayBlankValueWarning();
                 return;
-            } */
+            }
 
-            int punctuated = 0;
+            if (!VerifyWeightValue())
+                return;
 
-            foreach(char c in CharacterWeight.Text)
+            SetCharacterPhysicalAttributes();
+            this.Frame.Navigate(typeof(CreateCharacterPageTwo));
+        }
+
+        private void SetCharacterPhysicalAttributes()
+        {
+            CharacterModel.GetCharacterModel.Name = CharacterName.Text;
+
+            String selectedClass = ClassSelector.SelectedItem as String;
+            String selectedRace = RaceSelector.SelectedItem as String;
+
+            foreach (Class c in StandardLoader.Classes)
             {
-                if (c == '.' || c == ',')
-                    punctuated++;
-
-                if(!char.IsDigit(c) && c != '.' && c != ',' || punctuated >= 2)
+                if (selectedClass.Equals(c.Name))
                 {
-                    DisplayInvalidWeightValueWarning();
-                    return;
+                    CharacterModel.GetCharacterModel.CharacterClass = c;
+                    break;
                 }
             }
 
-            this.Frame.Navigate(typeof(CreateCharacterPageTwo));
+            foreach (Race r in StandardLoader.Races)
+            {
+                if (selectedRace.Equals(r.Name))
+                {
+                    CharacterModel.GetCharacterModel.CharacterRace = r;
+                    break;
+                }
+            }
+
+            try
+            {
+                CharacterModel.GetCharacterModel.Age = int.Parse(CharacterAge.Text);
+            }
+
+            catch (FormatException ex)
+            {
+                DisplayBlankValueWarning();
+            }
+
+            CharacterModel.GetCharacterModel.Height = CharacterHeightFeet.Text + "feet, " + CharacterHeightInches.Text + "inches";
+
+            try
+            {
+                double weightValue = double.Parse(CharacterWeight.Text);
+                CharacterModel.GetCharacterModel.Weight = weightValue;
+            }
+
+            catch (System.FormatException ex)
+            {
+                Debug.WriteLine(ex);
+                return;
+            }
+            }
+
+        private bool VerifyWeightValue()
+        {
+            int punctuated = 0;
+
+            foreach (char c in CharacterWeight.Text)
+            {
+                if (c == '.')
+                    punctuated++;
+
+                if (!char.IsDigit(c) && c != '.' || punctuated >= 2 || CharacterWeight.Text[0] == '.')
+                {
+                    DisplayInvalidWeightValueWarning();
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -139,8 +172,8 @@ namespace RPGproject
 
             ContentDialog blankValue = new ContentDialog
             {
-                Title = "One or more fields have no value",
-                Content = "All fields must have a value.",
+                Title = "One or more fields have invalid values or no values.",
+                Content = "All fields must have a valid value.",
                 CloseButtonText = "Ok."
             };
 

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPGproject.CharacterCreation
+namespace RPGproject.Source.CharacterCreation
 {
-    class Class
+    public class Class
     {
-        private String Name { get; set; }
+        private String name;
+        public String Name { get { return name; } set { name = value; } }
         private String Description { get; set; }
         private String HitDie { get; set; }
         private String PrimaryAbility { get; set; }
@@ -16,15 +17,20 @@ namespace RPGproject.CharacterCreation
         private String ArmorAndWeaponProficiencies { get; set; }
         private String SubClass { get; set; }
 
-        public Class(String Name, String Description, String HitDie, String PrimaryAbility, List<String> SavingThrowProficiencies, String ArmorAndWeaponProficiencies, String SubClass)
+        public Class(String name, String Description, String HitDie, String PrimaryAbility, List<String> SavingThrowProficiencies, String ArmorAndWeaponProficiencies, String SubClass)
         {
-            this.Name = Name;
+            this.name = name;
             this.Description = Description;
             this.HitDie = HitDie;
             this.PrimaryAbility = PrimaryAbility;
             this.SavingThrowProficiencies = SavingThrowProficiencies;
             this.ArmorAndWeaponProficiencies = ArmorAndWeaponProficiencies;
             this.SubClass = SubClass;
+        }
+
+        public Class(String name)
+        {
+            this.name = name;
         }
     }
 }
