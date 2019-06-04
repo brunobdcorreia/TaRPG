@@ -4,23 +4,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RPGproject"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="using:RPGproject.Source.CharacterCreation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 5)"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel>
-        <TextBlock HorizontalAlignment="Center" Margin="0,90,0,0" Text="Resumo da Campanha" FontSize="70" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <StackPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="/Assets/Fonts/Vecna.otf#Vecna"/>
+            </Style>
+        </StackPanel.Resources>
+        
+        <TextBlock HorizontalAlignment="Center" Margin="0,90,0,0" FontSize="80" TextWrapping="Wrap" Height="123"><Run Text="Campaign Summar"/><Run Text="y"/><LineBreak/><Run/></TextBlock>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Center" Margin="250,125,0,0" Text="Nome da campanha:" FontSize="50" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="NomeText" Margin="10,125,0,0" Text="" TextAlignment="Left" FontSize="50" Windows10FallCreatorsUpdate:HorizontalTextAlignment="DetectFromContent" TextWrapping="Wrap" VerticalAlignment="Top" Height="79" Width="1152"/>
+        <StackPanel Orientation="Horizontal" Height="212">
+            <TextBlock Margin="100,60,0,0" Text="Campaign Name:" FontSize="50" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Height="94"/>
+            <TextBlock x:Name="CampaignName" Margin="15,60,0,0" Text="" TextAlignment="Center" FontSize="50" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="79" Width="1152"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Center" Margin="250,0,0,0" Text="Número de Jogadores: " FontSize="50" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="NumeroText" Margin="0,5,0,0" Text="" FontSize="45" TextWrapping="Wrap" Height="62" VerticalAlignment="Top" Width="51"/>
-        </StackPanel>
+        <TextBlock Text="Players participating:" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <GridView Margin="50" ItemsSource="{x:Bind addedCharacters}" IsItemClickEnabled="False">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:Character">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Image Width="300" Height="200" Source="{x:Bind CharacterClass.ClassIcon}"/>
+                        <TextBlock FontSize="36" FontFamily="/Assets/Fonts/Vecna.otf#Vecna" Text="{x:Bind FirstDescription}" HorizontalAlignment="Center"/>
+                        <TextBlock FontSize="24" FontFamily="/Assets/Fonts/Vecna.otf#Vecna" Text="{x:Bind SecondDescription}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
 
     </StackPanel>
 </Page>

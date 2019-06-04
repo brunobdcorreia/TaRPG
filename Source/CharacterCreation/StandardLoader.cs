@@ -29,18 +29,18 @@ namespace RPGproject.Source.CharacterCreation
 
         private void LoadClasses()
         {
-            classes.Add(new Class("Barbarian"));
-            classes.Add(new Class("Bard"));
-            classes.Add(new Class("Cleric"));
-            classes.Add(new Class("Druid"));
-            classes.Add(new Class("Fighter"));
-            classes.Add(new Class("Monk"));
-            classes.Add(new Class("Paladin"));
-            classes.Add(new Class("Ranger"));
-            classes.Add(new Class("Rogue"));
-            classes.Add(new Class("Sorcerer"));
-            classes.Add(new Class("Warlock"));
-            classes.Add(new Class("Wizard")); 
+            classes.Add(new Class("Barbarian", "/Assets/ClassIcons/Barbaro.png"));
+            classes.Add(new Class("Bard", "/Assets/ClassIcons/Bardo.png"));
+            classes.Add(new Class("Cleric", "/Assets/ClassIcons/Clerigo"));
+            classes.Add(new Class("Druid", "/Assets/ClassIcons/Druida.png"));
+            classes.Add(new Class("Fighter", "/Assets/ClassIcons/Guerreiro.png"));
+            classes.Add(new Class("Monk", "/Assets/ClassIcons/Monge.png"));
+            classes.Add(new Class("Paladin", "/Assets/ClassIcons/Paladino.png"));
+            classes.Add(new Class("Ranger", "/Assets/ClassIcons/Patrulheiro.png"));
+            classes.Add(new Class("Rogue", "/Assets/ClassIcons/Ladino.png"));
+            classes.Add(new Class("Sorcerer", "/Assets/ClassIcons/Mago.png"));
+            classes.Add(new Class("Warlock", "/Assets/ClassIcons/Bruxo.png"));
+            classes.Add(new Class("Wizard", "/Assets/ClassIcons/Feiticeiro.png")); 
 
             characterClasses.Add("Barbarian");
             characterClasses.Add("Bard");

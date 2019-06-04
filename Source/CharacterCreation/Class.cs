@@ -8,6 +8,8 @@ namespace RPGproject.Source.CharacterCreation
 {
     public class Class
     {
+        private string iconPath;
+        public string ClassIcon { get { return iconPath; } }
         private String name;
         public String Name { get { return name; } set { name = value; } }
         private String Description { get; set; }
@@ -28,9 +30,10 @@ namespace RPGproject.Source.CharacterCreation
             this.SubClass = SubClass;
         }
 
-        public Class(String name)
+        public Class(String name, string path)
         {
             this.name = name;
+            iconPath = path;
         }
     }
 }

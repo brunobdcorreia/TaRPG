@@ -23,6 +23,7 @@ namespace RPGproject.Source.CharacterCreation
 {
     public sealed partial class CreateCharacterPageTwo : Page
     {
+        private bool rolled = false;
         public CreateCharacterPageTwo()
         {
             this.InitializeComponent();            
@@ -66,9 +67,7 @@ namespace RPGproject.Source.CharacterCreation
                     return;
                 }
 
-                CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);
-                Debug.WriteLine("Character age: " + CharacterModel.GetCharacterModel.Age);
-                //Debug.WriteLine("Number of created characters: " + CreatedCharacters.UserCharacters.Count);               
+                CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);                         
 
                 this.Frame.Navigate(typeof(MainPage));
 
@@ -159,15 +158,55 @@ namespace RPGproject.Source.CharacterCreation
             }
         }
 
+        private async void DisplayRollOnceWarning()
+        {
+            ContentDialog rollOnceWarning = new ContentDialog
+            {
+                Title = "Already rolled attribute values",
+                Content = "You can only roll attribute values once.",
+                CloseButtonText = "Ok."
+            };
+
+            ContentDialogResult result = await rollOnceWarning.ShowAsync();
+        }
+
         private void RollAttributes(object sender, RoutedEventArgs e)
         {
+            if(rolled)
+            {
+                DisplayRollOnceWarning();
+                return;
+            }
+
             Random rand = new Random();
-            Strength.Text = rand.Next(1, 13).ToString();
-            Dexterity.Text = rand.Next(1, 13).ToString();
-            Constitution.Text = rand.Next(1, 13).ToString();
-            Intelligence.Text = rand.Next(1, 13).ToString();
-            Wisdom.Text = rand.Next(1, 13).ToString();
-            Charisma.Text = rand.Next(1, 13).ToString();
+            List<int> rolls = new List<int>();
+            List<int> results = new List<int>();
+            int sum = 0;
+
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                    rolls.Add(rand.Next(1, 7));
+
+                rolls.Sort();
+
+                for (int k = 3; k >= 1; k--)
+                    sum += rolls.ElementAt(k);
+
+                results.Add(sum);
+                rolls.Clear();
+                sum = 0;
+            }
+
+            Strength.Text = results.ElementAt(0).ToString();
+            Dexterity.Text = results.ElementAt(1).ToString();
+            Constitution.Text = results.ElementAt(2).ToString();
+            Intelligence.Text = results.ElementAt(3).ToString();
+            Wisdom.Text = results.ElementAt(4).ToString();
+            Charisma.Text = results.ElementAt(5).ToString();
+
+            rolled = true;
+            RollAttributesButton.Background = RollAttributesButton.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
         }
 
         private List<CharAttribute> CreateAttributeList()
@@ -193,7 +232,7 @@ namespace RPGproject.Source.CharacterCreation
                 return charAttributes;
             }
 
-            catch(System.FormatException ex)
+            catch
             {
                 return null;
             }

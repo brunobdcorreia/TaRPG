@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RPGproject.Source.CampaignCreation;
+using RPGproject.Source.CharacterCreation;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -18,12 +20,17 @@ namespace RPGproject
 {
     public sealed partial class ResumoCampanha : Page
     {
+        private List<Character> addedCharacters;
         public ResumoCampanha()
         {
             this.InitializeComponent();
-            NumeroText.Text = CriarCampanha.playerNumber.ToString();
-            NomeText.Text = CriarCampanha.campaignName;
-            Debug.WriteLine(NomeText.Text);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            CampaignModel model = (CampaignModel)e.Parameter;
+            CampaignName.Text = model.GetCampaignModel.CampaignName;
+            addedCharacters = model.GetCampaignModel.Characters;
         }
     }
 }

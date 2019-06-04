@@ -1,10 +1,9 @@
 ﻿<Page
-    x:Class="RPGproject.Source.UserData.Screens.CreatedCharactersPage"
+    x:Class="RPGproject.Source.CampaignCreation.Screens.SelectCharactersPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:data="using:RPGproject.Source.CharacterCreation"
-    xmlns:reference="using:RPGproject.Source.UserData.Screens"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -15,7 +14,7 @@
                 <Setter Property="FontFamily" Value="Assets/Fonts/Vecna.otf#Vecna"/>
             </Style>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -23,8 +22,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <GridView x:Name="CharacterGridView" ItemsSource="{x:Bind Characters}" IsItemClickEnabled="True" ItemClick="CharacterGridView_ItemClick">
-            
+        <GridView x:Name="CharacterGridView" ItemsSource="{x:Bind availableCharacters}" IsItemClickEnabled="True" ItemClick="CharacterGridView_ItemClick">
+
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Character">
                     <StackPanel HorizontalAlignment="Center">
@@ -34,7 +33,7 @@
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
-            
+
         </GridView>
 
         <TextBlock x:Name="NoCharacters" HorizontalAlignment="Center" Text="" FontSize="100" FontFamily="Assets/Fonts/Vecna.otf#Vecna" VerticalAlignment="Center"/>

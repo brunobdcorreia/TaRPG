@@ -19,9 +19,8 @@ namespace RPGproject.Source.CharacterCreation
 {    
     public sealed partial class CreateCharacterPageOne : Page
     {
-        //private List<String> characterRaces = new List<String>();
-        //private List<String> characterClasses = new List<String>();
         CharacterModel charModel = new CharacterModel();
+
         public CreateCharacterPageOne()
         {
             this.InitializeComponent();
@@ -61,7 +60,7 @@ namespace RPGproject.Source.CharacterCreation
                 }
             }
 
-            catch (System.FormatException ex)
+            catch
             {
                 args.Cancel = true;
             }
@@ -123,12 +122,12 @@ namespace RPGproject.Source.CharacterCreation
                 CharacterModel.GetCharacterModel.Age = int.Parse(CharacterAge.Text);
             }
 
-            catch (FormatException ex)
+            catch
             {
                 DisplayBlankValueWarning();
             }
 
-            CharacterModel.GetCharacterModel.Height = CharacterHeightFeet.Text + "feet, " + CharacterHeightInches.Text + "inches";
+            CharacterModel.GetCharacterModel.Height = CharacterHeightFeet.Text + " feet, " + CharacterHeightInches.Text + " inches";
 
             try
             {

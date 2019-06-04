@@ -9,7 +9,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,26,0,0" Text="Character Creation" FontSize="80" FontFamily="Incosolata" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Grid.Resources>
+            <Style TargetType="ComboBox">
+                <Setter Property="FontFamily" Value="/Assets/Fonts/Vecna.otf#Vecna"/>
+            </Style>
+            
+            <Style TargetType="TextBox">
+                <Setter Property="FontFamily" Value="/Assets/Fonts/Vecna.otf#Vecna"/>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="/Assets/Fonts/Vecna.otf#Vecna"/>
+            </Style>
+        </Grid.Resources>
+        
+        <TextBlock HorizontalAlignment="Center" Margin="0,26,0,0" Text="Character Creation" FontSize="80" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="CharacterName" HorizontalAlignment="Center" Header="Character name:" Margin="0,164,0,0" Text="" VerticalAlignment="Top" Height="53" Width="287"/>
         <ComboBox x:Name="RaceSelector" Header="Choose a race" Margin="0,222,0,0" Width="286" HorizontalAlignment="Center"/>
         <ComboBox x:Name="ClassSelector" Header="Choose a class" Margin="0,277,0,0" Width="286" HorizontalAlignment="Center"/>
