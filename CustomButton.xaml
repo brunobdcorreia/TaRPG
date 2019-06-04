@@ -34,7 +34,7 @@
 
                                 <ContentPresenter>
                                     <TextBlock
-                                       FontFamily="{TemplateBinding FontFamily}"
+                                       FontFamily="/Assets/Fonts/Vecna.otf#Vecna"
                                        SelectionHighlightColor="{TemplateBinding Foreground}"
                                        FontSize="{TemplateBinding FontSize}"
                                        Foreground="White"

@@ -32,7 +32,7 @@ namespace RPGproject
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CriarCampanha));
+            this.Frame.Navigate(typeof(CreateCampaign));
         }
 
         private void CreateCharacter(object sender, RoutedEventArgs e)

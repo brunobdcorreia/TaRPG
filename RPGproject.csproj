@@ -124,6 +124,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\CampaignCreation\CampaignModel.cs" />
+    <Compile Include="Source\CampaignCreation\Screens\CreateCampaign.xaml.cs">
+      <DependentUpon>CreateCampaign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\CampaignCreation\Screens\SelectCharactersPage.xaml.cs">
+      <DependentUpon>SelectCharactersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\CharacterCreation\CharacterDBLinker.cs" />
     <Compile Include="Source\CharacterCreation\CharAttribute.cs" />
     <Compile Include="Source\CharacterCreation\Background.cs" />
@@ -134,9 +141,6 @@
     <Compile Include="Source\CharacterCreation\Condition.cs" />
     <Compile Include="Source\CharacterCreation\Screens\CreateCharacterPageOne.xaml.cs">
       <DependentUpon>CreateCharacterPageOne.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Source\CampaignCreation\Screens\CreateCampaign.xaml.cs">
-      <DependentUpon>CreateCampaign.xaml</DependentUpon>
     </Compile>
     <Compile Include="Source\CharacterCreation\Screens\CreateCharacterPageTwo.xaml.cs">
       <DependentUpon>CreateCharacterPageTwo.xaml</DependentUpon>
@@ -155,10 +159,10 @@
     <Compile Include="Source\CharacterCreation\SavingThrow.cs" />
     <Compile Include="Source\CharacterCreation\Skill.cs" />
     <Compile Include="Source\CharacterCreation\StandardLoader.cs" />
-    <Compile Include="Source\ClassViewer.xaml.cs">
-      <DependentUpon>ClassViewer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Source\UserData\CreatedCharacters.cs" />
+    <Compile Include="Source\UserData\Screens\CharacterSummary.xaml.cs">
+      <DependentUpon>CharacterSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\UserData\Screens\CreatedCharactersPage.xaml.cs">
       <DependentUpon>CreatedCharactersPage.xaml</DependentUpon>
     </Compile>
@@ -167,6 +171,46 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\ClassIcons\Barbaro.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Bardo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Bruxo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Clerigo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Druida.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Feiticeiro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Guerreiro.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Ladino.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Mago.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Monge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Paladino.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ClassIcons\Patrulheiro.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Fonts\Vecna Bold Italic.otf" />
+    <Content Include="Assets\Fonts\Vecna Bold.otf" />
+    <Content Include="Assets\Fonts\Vecna Italic.otf" />
+    <Content Include="Assets\Fonts\Vecna.otf" />
     <None Include="RPGproject_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -184,11 +228,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Source\CharacterCreation\Screens\CreateCharacterPageOne.xaml">
+    <Page Include="Source\CampaignCreation\Screens\CreateCampaign.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Source\CampaignCreation\Screens\CreateCampaign.xaml">
+    <Page Include="Source\CampaignCreation\Screens\SelectCharactersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Source\CharacterCreation\Screens\CreateCharacterPageOne.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,7 +256,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Source\ClassViewer.xaml">
+    <Page Include="Source\UserData\Screens\CharacterSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,6 +281,7 @@
       <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
