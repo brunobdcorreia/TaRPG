@@ -32,7 +32,7 @@ namespace RPGproject.Source.Data
     [Charisma] INTEGER NOT NULL
 )";
 
-        public static void Initilalize()
+        public static void Initialize()
         {
 
            using (SQLiteCommand com = new SQLiteCommand(DBAcess.con))
@@ -43,14 +43,14 @@ namespace RPGproject.Source.Data
                 DBAcess.Close();
                    
             }
-            recoverCharacters();
+            Recover();
         }
 
-        public static void insertCharacter(Character C){
+        public static void Insert(Character C){
              using (SQLiteCommand com = new SQLiteCommand(DBAcess.con))
               {
                 DBAcess.Open();
-                com.CommandText = command(C);
+                com.CommandText = Command(C);
                 com.ExecuteNonQuery();
                 DBAcess.Close();
 
@@ -58,7 +58,7 @@ namespace RPGproject.Source.Data
      
         }
 
-        public static void deleteCharacter(int ID)
+        public static void Delete(int ID)
         {
             using (SQLiteCommand com = new SQLiteCommand(DBAcess.con))
             {
@@ -66,12 +66,31 @@ namespace RPGproject.Source.Data
                 com.CommandText = "DELETE FROM Character Where ID = @id";
                 com.Parameters.AddWithValue("@id", ID);
                 com.ExecuteNonQuery();
+
                 DBAcess.Close();
 
             }
         }
 
-        public static void recoverCharacters()
+        public static int GetIDLast()
+        {
+            int a;
+            using (SQLiteCommand com = new SQLiteCommand(DBAcess.con))
+            {
+                DBAcess.Open();
+                com.CommandText = "Select * FROM Character WHERE ID = (SELECT MAX(ID) FROM Character)";
+                com.ExecuteNonQuery();
+                using (SQLiteDataReader reader = com.ExecuteReader())
+                {
+                    reader.Read();
+                    a = (int)(long)reader["ID"];
+                }
+                DBAcess.Close();
+
+            }
+            return a;
+        }
+        public static void Recover()
         {
             using (SQLiteCommand com = new SQLiteCommand(DBAcess.con))
             {
@@ -83,7 +102,10 @@ namespace RPGproject.Source.Data
                     while (reader.Read())
                     {
 
-                        CreatedCharacters.AddCharacter(getCharacterModel(reader));
+                        CreatedCharacters.AddCharacter(new Character((int)(long)reader["ID"],(string)reader["Name"],(string)reader["Alignment"], (int)(long)reader["Age"],(string)reader["Height"],
+                            (double)reader["Weight"],(string)reader["CharacterBackstory"], (int)(long)reader["Strength"], (int)(long)reader["Dexterity"], (int)(long)reader["Constitution"],
+                            (int)(long)reader["Intelligence"], (int)(long)reader["Wisdom"], (int)(long)reader["Charisma"],(string)reader["CharacterClass"],(string)reader["CharacterRace"],
+                            (int)(long)reader["ExperiencePoints"], (int)(long)reader["Level"]));
 
                     }
                 }
@@ -92,7 +114,7 @@ namespace RPGproject.Source.Data
             }
         }
 
-        private static string command(Character C)
+        private static string Command(Character C)
         {
             string command = "INSERT INTO Character (Name,Alignment,ExperiencePoints,Level,Age,Height,Weight," +
                 "CharacterBackstory,CharacterClass,CharacterRace,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma) Values ('" + C.Name + "','" 
@@ -104,58 +126,6 @@ namespace RPGproject.Source.Data
             return command;
         }
 
-        private static Character getCharacterModel(SQLiteDataReader reader)
-        {
-            StandardLoader loader = new StandardLoader();
-            loader.LoadStandardValues();
-
-
-
-            Character a = new Character();
-            a.characterID = (int)(long)reader["ID"];
-            a.Name = (string)reader["Name"];
-            a.Alignment = (string)reader["Alignment"];
-            a.Age = (int)(long)reader["Age"];
-            a.Height = (string)reader["height"];
-            a.Weight = (double)reader["Weight"];
-            a.CharacterBackstory = (string)reader["CharacterBackstory"];
-
-
-            List<CharAttribute> Attributes = new List<CharAttribute>();
-            Attributes.Add(new CharAttribute("Strength", (int)(long)reader["Strength"]));
-            Attributes.Add(new CharAttribute("Dexterity", (int)(long)reader["Dexterity"]));
-            Attributes.Add(new CharAttribute("Constitution", (int)(long)reader["Constitution"]));
-            Attributes.Add(new CharAttribute("Intelligence", (int)(long)reader["Intelligence"]));
-            Attributes.Add(new CharAttribute("Wisdom", (int)(long)reader["Wisdom"]));
-            Attributes.Add(new CharAttribute("Charisma", (int)(long)reader["Charisma"]));
-
-            a.Attributes = Attributes;
-
-
-
-
-            string selectedClass = (string)reader["CharacterClass"];
-            string selectedRace = (string)reader["CharacterRace"];
-
-            foreach (Class c in StandardLoader.Classes)
-            {
-                if (selectedClass.Equals(c.Name))
-                {
-                    a.CharacterClass = c;
-                    break;
-                }
-            }
-
-            foreach (Race r in StandardLoader.Races)
-            {
-                if (selectedRace.Equals(r.Name))
-                {
-                    a.CharacterRace = r;
-                    break;
-                }
-            }
-
-            return a;
-        }
+        
     }
 }

@@ -144,6 +144,8 @@
     <Compile Include="Source\CharacterCreation\Screens\CreateCharacterPageTwo.xaml.cs">
       <DependentUpon>CreateCharacterPageTwo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\Data\CampaignDB.cs" />
+    <Compile Include="Source\Data\Campaign_CharacterDB.cs" />
     <Compile Include="Source\Data\CharacterDB.cs" />
     <Compile Include="Source\Data\DBAcess.cs" />
     <Compile Include="Source\CharacterCreation\Entity.cs" />

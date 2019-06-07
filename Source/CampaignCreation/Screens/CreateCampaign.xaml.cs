@@ -8,6 +8,7 @@ using RPGproject.Source.UserData.Screens;
 using System.Diagnostics;
 using Windows.UI.Xaml.Navigation;
 using RPGproject.Source.CampaignCreation;
+using RPGproject.Source.Data;
 
 namespace RPGproject
 {
@@ -47,6 +48,7 @@ namespace RPGproject
             campaignModel.GetCampaignModel.CampaignName = CampaignName.Text;
             Debug.WriteLine(campaignModel.GetCampaignModel.CampaignName);
             this.Frame.Navigate(typeof(ResumoCampanha), campaignModel);
+            CampaignDB.Insert(campaignModel.GetCampaignModel);
         }
     }
 }

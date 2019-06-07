@@ -60,7 +60,7 @@ namespace RPGproject.Source.UserData.Screens
             if(result == ContentDialogResult.Primary)
             {
                 CreatedCharacters.UserCharacters.Remove(viewedCharacter);
-                CharacterDB.deleteCharacter(viewedCharacter.characterID);
+                CharacterDB.Delete(viewedCharacter.characterID);
                 this.Frame.Navigate(typeof(CreatedCharactersPage));
             }
         }

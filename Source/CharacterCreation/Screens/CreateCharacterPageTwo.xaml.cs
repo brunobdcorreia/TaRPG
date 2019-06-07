@@ -67,9 +67,9 @@ namespace RPGproject.Source.CharacterCreation
                     DisplayInvalidValueWarning();
                     return;
                 }
-                
+                CharacterDB.Insert(CharacterModel.GetCharacterModel);
+                CharacterModel.GetCharacterModel.characterID = CharacterDB.GetIDLast();
                 CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);
-                CharacterDB.insertCharacter(CharacterModel.GetCharacterModel);
                 this.Frame.Navigate(typeof(MainPage));
 
                 //CharacterDBLinker.InitializeDatabase();

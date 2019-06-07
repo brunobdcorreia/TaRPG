@@ -19,7 +19,8 @@ namespace RPGproject.Source.Data
             {
                 SQLiteConnection.CreateFile(path);
             }
-            CharacterDB.Initilalize();
+            CharacterDB.Initialize();
+            CampaignDB.Initialize();
         }
 
         public static void Open()

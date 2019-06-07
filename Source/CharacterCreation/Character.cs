@@ -95,6 +95,51 @@ namespace RPGproject.Source.CharacterCreation
             this.Feats = Feats;
         }
 
+        /***********/
+        public Character(int ID, string Name, string Alignment, int Age, string Height, double Weight, string CharacterBackstory, int Strength, int Dexterity, int Constitution,
+            int Intelligence, int Wisdom, int Charisma, string selectedClass, string selectedRace,int Experience, int Level)
+        {
+            this.characterID = ID;
+            this.Name = Name;
+            this.Alignment = Alignment;
+            this.Age = Age;
+            this.Height = Height;
+            this.Weight = Weight;
+            this.CharacterBackstory = CharacterBackstory;
+            this.Attributes= new List<CharAttribute>();
+            this.Attributes.Add(new CharAttribute("Strength", Strength));
+            this.Attributes.Add(new CharAttribute("Dexterity", Dexterity));
+            this.Attributes.Add(new CharAttribute("Constitution", Constitution));
+            this.Attributes.Add(new CharAttribute("Intelligence", Intelligence));
+            this.Attributes.Add(new CharAttribute("Wisdom", Wisdom));
+            this.Attributes.Add(new CharAttribute("Charisma", Charisma));
+            this.ExperiencePoints = Experience;
+            this.Level = Level;
+
+            StandardLoader loader = new StandardLoader();
+            loader.LoadStandardValues();
+
+            foreach (Class c in StandardLoader.Classes)
+            {
+                if (selectedClass.Equals(c.Name))
+                {
+                    this.CharacterClass = c;
+                    break;
+                }
+            }
+
+            foreach (Race r in StandardLoader.Races)
+            {
+                if (selectedRace.Equals(r.Name))
+                {
+                    this.CharacterRace = r;
+                    break;
+                }
+            }
+
+        }
+        /******/
+
         public Character()
         {
             this.level = 1;
