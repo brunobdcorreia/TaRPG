@@ -14,7 +14,7 @@ namespace RPGproject.Source.CharacterCreation
     public class Character : Entity
     {
         [SQLite.Net.Attributes.PrimaryKey, SQLite.Net.Attributes.AutoIncrement]
-        private int characterID { get; set; }
+        public int characterID { get; set; }
         private Class characterClass;
         //FirstDescription and SecondDescription are used when describing the characters on the CreatedCharactersPage.
         public string FirstDescription { get { return this.Name + ", " + this.Age; } }
@@ -50,8 +50,21 @@ namespace RPGproject.Source.CharacterCreation
         private double weight;
         public double Weight { get { return weight; } set { weight = value; } }
         public string GetFormattedWeight { get { return weight + " lbs"; } }
-        private string Appearance { get; set; }
-        private string CharacterBackstory { get; set; }
+        public string Appearance { get; set; }
+        public string CharacterBackstory { get; set; }
+
+
+        /********/
+        public string getCharacterBackstory()
+        {
+            return CharacterBackstory;
+        }
+        public string getApp()
+        {
+            return Appearance;
+        }
+     
+        /***/
         //private List<Spellcaster> SpellcastingClasses { get; set; } = new List<Spellcaster>();
         [SQLite.Net.Attributes.Ignore]
         private List<Feat> feats { get; set; } = new List<Feat>();

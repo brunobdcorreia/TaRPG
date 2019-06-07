@@ -1,4 +1,5 @@
-﻿using RPGproject.Source.UserData;
+﻿using RPGproject.Source.Data;
+using RPGproject.Source.UserData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -66,9 +67,9 @@ namespace RPGproject.Source.CharacterCreation
                     DisplayInvalidValueWarning();
                     return;
                 }
-
-                CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);                         
-
+                
+                CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);
+                CharacterDB.insertCharacter(CharacterModel.GetCharacterModel);
                 this.Frame.Navigate(typeof(MainPage));
 
                 //CharacterDBLinker.InitializeDatabase();

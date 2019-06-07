@@ -1,4 +1,5 @@
-﻿using RPGproject.Source.UserData;
+﻿using RPGproject.Source.Data;
+using RPGproject.Source.UserData;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,8 +30,10 @@ namespace RPGproject
         /// </summary>
         public App()
         {
+            DBAcess.initializeDB();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            
         }
 
         /// <summary>

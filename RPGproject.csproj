@@ -131,7 +131,6 @@
     <Compile Include="Source\CampaignCreation\Screens\SelectCharactersPage.xaml.cs">
       <DependentUpon>SelectCharactersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\CharacterCreation\CharacterDBLinker.cs" />
     <Compile Include="Source\CharacterCreation\CharAttribute.cs" />
     <Compile Include="Source\CharacterCreation\Background.cs" />
     <Compile Include="Source\CampaignCreation\Campaign.cs" />
@@ -145,7 +144,8 @@
     <Compile Include="Source\CharacterCreation\Screens\CreateCharacterPageTwo.xaml.cs">
       <DependentUpon>CreateCharacterPageTwo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\UserData\CharacterDBAccess.cs" />
+    <Compile Include="Source\Data\CharacterDB.cs" />
+    <Compile Include="Source\Data\DBAcess.cs" />
     <Compile Include="Source\CharacterCreation\Entity.cs" />
     <Compile Include="Source\CharacterCreation\Feat.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -266,11 +266,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite">
+      <Version>2.2.4</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>
     <PackageReference Include="SQLite.Net-PCL">
       <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.110</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
