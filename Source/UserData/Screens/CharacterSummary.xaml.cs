@@ -1,9 +1,11 @@
 ﻿using RPGproject.Source.CharacterCreation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -18,14 +20,25 @@ using Windows.UI.Xaml.Navigation;
 
 namespace RPGproject.Source.UserData.Screens
 {
+    public struct CharacterEdit
+    {
+        Character character;
+        int characterId;
+
+        public CharacterEdit(Character character, int ID)
+        {
+            this.character = character;
+            characterId = ID;
+        }
+    }
+
     public sealed partial class CharacterSummary : Page
     {
         private Character viewedCharacter;
+
         public CharacterSummary()
         {
             this.InitializeComponent();
-            //viewedCharacter = CreatedCharactersPage.GetSelectedCharacter();
-
         }
 
         void DisplayCharacterSummary(Character character)
@@ -42,6 +55,15 @@ namespace RPGproject.Source.UserData.Screens
             IntelligenceAtt.Text = character.Attributes.Find(x => x.Name == "Intelligence").Value.ToString();
             WisdomAtt.Text = character.Attributes.Find(x => x.Name == "Wisdom").Value.ToString();
             CharismaAtt.Text = character.Attributes.Find(x => x.Name == "Charisma").Value.ToString();
+
+            List<int> attMods = character.AttributeModifiers;
+
+            StrMod.Text = "(" + attMods.ElementAt(0).ToString() + ")";
+            DexMod.Text = "(" + attMods.ElementAt(1).ToString() + ")";
+            ConMod.Text = "(" + attMods.ElementAt(2).ToString() + ")";
+            IntMod.Text = "(" + attMods.ElementAt(3).ToString() + ")";
+            WisMod.Text = "(" + attMods.ElementAt(4).ToString() + ")";
+            ChaMod.Text = "(" + attMods.ElementAt(5).ToString() + ")";
         }
 
         private async void DisplayDeleteCharacterConfirmation()
@@ -74,12 +96,15 @@ namespace RPGproject.Source.UserData.Screens
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreatedCharactersPage));
+            if(this.Frame.CanGoBack)
+            {
+                this.Frame.GoBack();
+            }
         }
 
         private void EditCharacter_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(CreateCharacterPageOne), viewedCharacter);
         }
 
         private void DeleteCharacter_Click(object sender, RoutedEventArgs e)

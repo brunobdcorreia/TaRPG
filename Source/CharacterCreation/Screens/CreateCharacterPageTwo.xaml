@@ -29,24 +29,22 @@
         <TextBlock HorizontalAlignment="Center" Margin="-295,320,0,0" Text="Dexterity:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-350,393,0,0" Text="Constitution:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-340,466,0,0" Text="Intelligence:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="-290,539,0,0" Text="Wisdom:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="-300,612,0,0" Text="Charisma:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="Strength" HorizontalAlignment="Center" Margin="0,262,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Strength_BeforeChanging"/>
-        <TextBox x:Name="Charisma" HorizontalAlignment="Center" Margin="0,627,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Charisma_BeforeChanging"/>
-        <TextBox x:Name="Wisdom" HorizontalAlignment="Center" Margin="0,554,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Wisdom_BeforeChanging"/>
-        <TextBox x:Name="Intelligence" HorizontalAlignment="Center" Margin="0,480,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Intelligence_BeforeChanging"/>
-        <TextBox x:Name="Constitution" HorizontalAlignment="Center" Margin="0,408,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Constitution_BeforeChanging"/>
-        <TextBox x:Name="Dexterity" HorizontalAlignment="Center" Margin="0,333,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Dexterity_BeforeChanging"/>
-        <Button Content="Next" Margin="857,685,0,0" VerticalAlignment="Top" Width="276" Style="{StaticResource CustomButton}" Background="DarkRed" FontSize="34" BorderBrush="Black" Height="54" Click="NextButton_Clicked"/>
-        <Button Content="Back" Margin="857,763,0,0" VerticalAlignment="Top" Width="276" Style="{StaticResource CustomButton}" Background="DarkRed" FontSize="34" BorderBrush="Black" Height="54" Click="BackButton_Clicked"/>
-        <Button x:Name="RollAttributesButton" Content="Roll" Margin="1056,443,0,0" VerticalAlignment="Top" Style="{StaticResource CustomButton}" Background="DarkRed" Width="150" Height="70" FontSize="36" Click="RollAttributes"/>
-
-
-        <!--<TextBox HorizontalAlignment="Center" Margin="0,105,0,0" Text="" VerticalAlignment="Top" Height="27" Width="287"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,109,0,0" Text="Name: " TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,171,0,0" Text="Race: " TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
-        <ComboBox x:Name="RaceSelector" Header="Choose a race" ItemsSource="{x:Bind Races}" Margin="0,137,0,0" Width="120" HorizontalAlignment="Center"/>
-        <ComboBox x:Name="ClassSelector" Header="Choose a class" ItemsSource="{x:Bind Classes}" Margin="0,197,0,0" Width="120" HorizontalAlignment="Center"/> -->
-
+        <TextBlock HorizontalAlignment="Center" Margin="-270,539,0,0" Text="Wisdom:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-295,612,0,0" Text="Charisma:" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="Strength" HorizontalAlignment="Center" Margin="0,257,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Strength_BeforeChanging"/>
+        <TextBox x:Name="Charisma" HorizontalAlignment="Center" Margin="0,622,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Charisma_BeforeChanging"/>
+        <TextBox x:Name="Wisdom" HorizontalAlignment="Center" Margin="0,549,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Wisdom_BeforeChanging"/>
+        <TextBox x:Name="Intelligence" HorizontalAlignment="Center" Margin="0,475,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Intelligence_BeforeChanging"/>
+        <TextBox x:Name="Constitution" HorizontalAlignment="Center" Margin="0,403,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Constitution_BeforeChanging"/>
+        <TextBox x:Name="Dexterity" HorizontalAlignment="Center" Margin="0,328,0,0" Text="" InputScope="Number" VerticalAlignment="Top" Width="70" BeforeTextChanging="Dexterity_BeforeChanging"/>
+        <Button Content="Next" Margin="857,770,0,0" VerticalAlignment="Top" Width="276" Style="{StaticResource CustomButton}" Background="DarkRed" FontSize="34" BorderBrush="Black" Height="54" Click="NextButton_Clicked"/>
+        <Button Content="Back" Margin="857,850,0,0" VerticalAlignment="Top" Width="276" Style="{StaticResource CustomButton}" Background="DarkRed" FontSize="34" BorderBrush="Black" Height="54" Click="BackButton_Clicked"/>
+        <Button x:Name="RollAttributesButton" Content="Roll" Margin="857,690,0,0" VerticalAlignment="Top" Style="{StaticResource CustomButton}" Background="DarkRed" Width="276" Height="54" FontSize="36" Click="RollAttributes"/>
+        <TextBlock x:Name="StrMod" HorizontalAlignment="Center" Margin="150,258,0,0" Text="" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="DexMod" HorizontalAlignment="Center" Margin="150,329,0,0" Text="" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="ConMod" HorizontalAlignment="Center" Margin="150,404,0,0" Text="" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="IntMod" HorizontalAlignment="Center" Margin="150,476,0,0" Text="" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="WisMod" HorizontalAlignment="Center" Margin="150,545,0,0" Text="" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="ChaMod" HorizontalAlignment="Center" Margin="150,620,0,0" Text="" FontSize="35" TextWrapping="Wrap" VerticalAlignment="Top"/>
     </Grid>
 </Page>

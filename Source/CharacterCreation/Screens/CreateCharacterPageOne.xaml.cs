@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RPGproject.Source.UserData;
+using RPGproject.Source.UserData.Screens;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -19,7 +21,8 @@ namespace RPGproject.Source.CharacterCreation
 {    
     public sealed partial class CreateCharacterPageOne : Page
     {
-        CharacterModel charModel = new CharacterModel();
+        private CharacterModel charModel = new CharacterModel();
+        private string prevCharacter;
 
         public CreateCharacterPageOne()
         {
@@ -89,7 +92,7 @@ namespace RPGproject.Source.CharacterCreation
         {
 
             if (CharacterName.Text == "" || CharacterName.Text[0] == ' ' || CharacterAge.Text == "" || CharacterWeight.Text == "" || (CharacterHeightFeet.Text == "0"
-            && CharacterHeightInches.Text == "0"))
+            && CharacterHeightInches.Text == "0") || ClassSelector.SelectedItem == null || RaceSelector.SelectedItem == null)
             {
                 DisplayBlankValueWarning();
                 return;
@@ -99,7 +102,7 @@ namespace RPGproject.Source.CharacterCreation
                 return;
 
             SetCharacterPhysicalAttributes();
-            this.Frame.Navigate(typeof(CreateCharacterPageTwo));
+            this.Frame.Navigate(typeof(CreateCharacterPageTwo), prevCharacter);
         }
 
         private void SetCharacterPhysicalAttributes()
@@ -151,7 +154,7 @@ namespace RPGproject.Source.CharacterCreation
                 Debug.WriteLine(ex);
                 return;
             }
-            }
+        }
 
         private bool VerifyWeightValue()
         {
@@ -304,9 +307,11 @@ namespace RPGproject.Source.CharacterCreation
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(e.Parameter is Character)
+            if(e.Parameter is Character && e.Parameter != null)
             {
                 Character c = (Character)e.Parameter;
+                prevCharacter = c.Name;
+                CharacterModel.GetCharacterModel = c;
 
                 CharacterName.Text = c.Name;
                 RaceSelector.SelectedItem = StandardLoader.Races.Find(x => x.Name == c.CharacterRace.Name);

@@ -32,7 +32,7 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button Name="Done" Margin="0,0,0,0" Style="{StaticResource CustomButton}" Background="DarkRed" Content="Done" FontSize="40" HorizontalAlignment="Center" Width="264" Height="71"/>
+        <Button Name="Done" Margin="0,0,0,0" Style="{StaticResource CustomButton}" Background="DarkRed" Content="Done" FontSize="40" HorizontalAlignment="Center" Width="264" Height="71" Click="Done_Click"/>
 
     </StackPanel>
 </Page>

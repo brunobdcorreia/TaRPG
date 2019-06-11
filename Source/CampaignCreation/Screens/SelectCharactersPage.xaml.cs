@@ -62,9 +62,22 @@ namespace RPGproject.Source.CampaignCreation.Screens
             ContentDialogResult result = await duplicateCharacter.ShowAsync();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(e.Parameter is List<Character>)
+            {
+                selectedCharacters = (List<Character>)e.Parameter;
+            }
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateCampaign));
+            if(this.Frame.CanGoBack)
+            {
+                this.Frame.GoBack();
+            }
+
+            //this.Frame.Navigate(typeof(CreateCampaign), selectedCharacters);
         }
     }
 }

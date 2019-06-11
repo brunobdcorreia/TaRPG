@@ -1,6 +1,7 @@
 ﻿using RPGproject.Source.CharacterCreation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace RPGproject.Source.UserData
 
         public static void DeleteCharacter(Character character)
         {
+            Debug.WriteLine("Deleting " + character.Name);
             userCharacters.Remove(character);
         }
     }

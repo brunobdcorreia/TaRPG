@@ -57,6 +57,8 @@ namespace RPGproject.Source.CharacterCreation
         //private List<Spellcaster> SpellcastingClasses { get; set; } = new List<Spellcaster>();
         private List<Feat> feats { get; set; } = new List<Feat>();
         public List<Feat> Feats { get { return feats; } set { feats = value; } }
+        private List<int> attributeModifiers;
+        public List<int> AttributeModifiers { get { return attributeModifiers; } set { attributeModifiers = value; } }
 
         public Character(string Name, int HitPointMax, int ArmorClass, SavingThrow SavingThrows, List<Skill> Skills, List<CharAttribute> Attributes, int ProficiencyBonus,
             int PassiveWisdom, List<string> LanguagesSpoken, List<Condition> ActiveConditions, string Traits, string Notes, Class characterClass, Race characterRace, string playerName, string Alignment,

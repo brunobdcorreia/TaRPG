@@ -10,11 +10,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Content="Create a campaign" Windows10version1809:CornerRadius="12" BorderBrush="Black" BorderThickness="7" FontSize="60" Background="DarkRed" Foreground="White" Margin="0,312,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Button_Click" Height="146" Width="837" Style="{StaticResource CustomButton}"/>
-        <!-- <Button Content="Continue campaign" Margin="0,115,0,0" VerticalAlignment="Top" Style="{StaticResource CustomButton}" Height="52" Width="159" HorizontalAlignment="Center" Background="DarkRed"/> -->
-        <Button Content="Create a character" Margin="0,516,0,0" Windows10version1809:CornerRadius="12" Style="{StaticResource CustomButton}" BorderBrush="Black" BorderThickness="7" Background="DarkRed" Height="146" Width="837" FontSize="60" VerticalAlignment="Top" HorizontalAlignment="Center" Click="CreateCharacter"/>
-        <Button Content="View created characters" Margin="0,720,0,0" Windows10version1809:CornerRadius="12" Style="{StaticResource CustomButton}" BorderBrush="Black" BorderThickness="7" Background="DarkRed" Height="146" Width="837" FontSize="60" VerticalAlignment="Top" HorizontalAlignment="Center" Click="ViewCreatedCharacters"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,35,0,0" Text="TaRPG" FontSize="200" FontFamily="Assets/Fonts/Vecna.otf#Vecna" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Content="Create a campaign" Windows10version1809:CornerRadius="12" BorderBrush="Black" BorderThickness="7" FontSize="60" Background="DarkRed" Foreground="White" Margin="0,260,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Button_Click" Height="146" Width="837" Style="{StaticResource CustomButton}"/>
+        <Button Content="Create a character" Margin="0,460,0,0" Windows10version1809:CornerRadius="12" Style="{StaticResource CustomButton}" BorderBrush="Black" BorderThickness="7" Background="DarkRed" Height="146" Width="837" FontSize="60" VerticalAlignment="Top" HorizontalAlignment="Center" Click="CreateCharacter"/>
+        <Button Content="View created characters" Margin="0,670,0,0" Windows10version1809:CornerRadius="12" Style="{StaticResource CustomButton}" BorderBrush="Black" BorderThickness="7" Background="DarkRed" Height="146" Width="837" FontSize="60" VerticalAlignment="Top" HorizontalAlignment="Center" Click="ViewCreatedCharacters"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,-15,0,0" Text="TaRPG" FontSize="200" FontFamily="Assets/Fonts/Vecna.otf#Vecna" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Content="View ongoing campaigns" Margin="0,870,0,0" Windows10version1809:CornerRadius="12" Style="{StaticResource CustomButton}" BorderBrush="Black" BorderThickness="7" Background="DarkRed" Height="146" Width="837" FontSize="60" VerticalAlignment="Top" HorizontalAlignment="Center" Click="ViewOngoingCampaigns"/>
 
     </Grid>
 </Page>

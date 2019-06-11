@@ -31,7 +31,7 @@ namespace RPGproject.Source.CharacterCreation
         {
             classes.Add(new Class("Barbarian", "/Assets/ClassIcons/Barbaro.png"));
             classes.Add(new Class("Bard", "/Assets/ClassIcons/Bardo.png"));
-            classes.Add(new Class("Cleric", "/Assets/ClassIcons/Clerigo"));
+            classes.Add(new Class("Cleric", "/Assets/ClassIcons/Clerigo.png"));
             classes.Add(new Class("Druid", "/Assets/ClassIcons/Druida.png"));
             classes.Add(new Class("Fighter", "/Assets/ClassIcons/Guerreiro.png"));
             classes.Add(new Class("Monk", "/Assets/ClassIcons/Monge.png"));

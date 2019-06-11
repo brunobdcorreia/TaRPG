@@ -20,20 +20,28 @@ namespace RPGproject
         public CreateCampaign()
         {
             this.InitializeComponent();
+            addedCharacters = new List<Character>();
             campaignModel = new CampaignModel();
         }
 
         private void AddPlayers_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SelectCharactersPage));
+            this.Frame.Navigate(typeof(SelectCharactersPage), addedCharacters);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if(e.Parameter is List<Character>)
             {
-                campaignModel.GetCampaignModel.Characters = (List<Character>)e.Parameter;
-                addedCharacters = campaignModel.GetCampaignModel.Characters;
+                List<Character> characters = (List<Character>)e.Parameter;
+
+                if (characters.Count > 0)
+                {
+                    campaignModel.GetCampaignModel.Characters = characters;
+                    addedCharacters = campaignModel.GetCampaignModel.Characters;
+                }
+
+                else return;
             }
         }
 
