@@ -35,9 +35,31 @@ namespace RPGproject.Source.CampaignCreation.Screens
 
         private void CharacterGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            selectedCharacters.Add((Character)e.ClickedItem);
             selectedCharacter = (Character)e.ClickedItem;
+
+            foreach(Character c in selectedCharacters)
+            {
+                if(selectedCharacter.Name.Equals(c.Name))
+                {
+                    DisplayDuplicateCharacterWarning();
+                    return;
+                }
+            }
+
+            selectedCharacters.Add((Character)e.ClickedItem);
             this.Frame.Navigate(typeof(CreateCampaign), selectedCharacters);
+        }
+
+        private async void DisplayDuplicateCharacterWarning()
+        {
+            ContentDialog duplicateCharacter = new ContentDialog
+            {
+                Title = "Duplicate character.",
+                Content = "This character is already participating in this campaign.",
+                CloseButtonText = "Ok"
+            };
+
+            ContentDialogResult result = await duplicateCharacter.ShowAsync();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

@@ -32,6 +32,7 @@
         <TextBlock HorizontalAlignment="Center" Margin="-30,430,0,0" Text="Intelligence:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-90,490,0,0" Text="Wisdom:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-70,550,0,0" Text="Charisma:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        
         <TextBlock x:Name="CharacterName" HorizontalAlignment="Left" Margin="160,255,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="CharacterAge" HorizontalAlignment="Left" Margin="140,315,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="CharacterRace" HorizontalAlignment="Left" Margin="160,375,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>

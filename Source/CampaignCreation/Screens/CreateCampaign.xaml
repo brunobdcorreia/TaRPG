@@ -16,13 +16,14 @@
             </Style>
         </StackPanel.Resources>
 
-        <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" Text="Campaign Creation" FontSize="80" TextWrapping="Wrap" Height="101"/>
+        <Button x:Name="BackButton" HorizontalAlignment="Left" Margin="20,20,0,0" Content="Back" FontSize="26" Background="DarkRed" Width="100" Height="50" Style="{StaticResource CustomButton}" Click="BackButton_Click"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,-50,0,0" Text="Campaign Creation" FontSize="80" TextWrapping="Wrap" Height="101"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" TextAlignment="Center" Text="Campaign name:" FontSize="30"  TextWrapping="Wrap" Height="35" Width="340"/>
         <TextBox x:Name="CampaignName" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,0" Text="" FontFamily="/Assets/Fonts/Vecna.otf#Vecna" Height="31" Width="439"/>
         <Button x:Name="AddPlayers" Style="{StaticResource CustomButton}" FontSize="26" Background="DarkRed" Margin="0,50,0,0" HorizontalAlignment="Center" Content="Add players" Height="56" Width="168" Click="AddPlayers_Click"/>
         <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Added players:" FontSize="50"/>
         
-        <GridView x:Name="CharacterGridView" ItemsSource="{x:Bind addedCharacters}" Margin="200,20,200,0" IsItemClickEnabled="True" ItemClick="CharacterGridView_ItemClick" Height="504">
+        <GridView x:Name="CharacterGridView" ItemsSource="{x:Bind addedCharacters}" Margin="200,20,200,0" IsItemClickEnabled="True" ItemClick="CharacterGridView_ItemClick" Height="400">
 
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Character">

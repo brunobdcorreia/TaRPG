@@ -38,7 +38,6 @@ namespace RPGproject.Source.CharacterCreation
 
             else
             {
-
                 RequestUserConfirmation();
             }
         }      
@@ -67,18 +66,16 @@ namespace RPGproject.Source.CharacterCreation
                     return;
                 }
 
-                CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);                         
+                //CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);                         
 
-                this.Frame.Navigate(typeof(MainPage));
-
-                //CharacterDBLinker.InitializeDatabase();
-                //CharacterDBLinker.AddCharacter(CharacterModel.GetCharacterModel);
+                CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
+                this.Frame.Navigate(typeof(MainPage));              
             }
         }
 
         private void BackButton_Clicked(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateCharacterPageOne));
+            this.Frame.Navigate(typeof(CreateCharacterPageOne), CharacterModel.GetCharacterModel);
         }
 
         private void Strength_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)

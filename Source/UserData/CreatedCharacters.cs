@@ -14,6 +14,12 @@ namespace RPGproject.Source.UserData
 
         public static void AddCharacter(Character character)
         {
+            foreach(Character c in userCharacters)
+            {
+                if (character.Name.Equals(c.Name))
+                    return;
+            }
+
             userCharacters.Add(character);
         }
 

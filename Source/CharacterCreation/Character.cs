@@ -11,16 +11,16 @@ namespace RPGproject.Source.CharacterCreation
         int Amount;
         string DiceType;
     }*/
+
     public class Character : Entity
     {
-        [SQLite.Net.Attributes.PrimaryKey, SQLite.Net.Attributes.AutoIncrement]
-        private int characterID { get; set; }
+        private int characterID;
+        public int CharacterID { get { return characterID; } set { characterID = value; } }
         private Class characterClass;
         //FirstDescription and SecondDescription are used when describing the characters on the CreatedCharactersPage.
         public string FirstDescription { get { return this.Name + ", " + this.Age; } }
         public string SecondDescription { get { return this.CharacterRace.Name + " " + this.characterClass.Name; } }
         public Class CharacterClass { get { return characterClass; } set { characterClass = value; } }
-        [SQLite.Net.Attributes.Ignore]
         private Race characterRace { get; set; }
         public Race CharacterRace { get { return characterRace; } set { characterRace = value; } }
         private string playerName;
@@ -32,7 +32,6 @@ namespace RPGproject.Source.CharacterCreation
         private bool Inspiration { get; set; }
         private int level;
         public int Level { get { return level; } set { level = value; } }
-        [SQLite.Net.Attributes.Ignore]
      // private List<HitDice> HitDieAvailable { get; set; } = new List<HitDice>();
      // [SQLite.Net.Attributes.Ignore]
      // private List<HitDice> HitDieTotal { get; set; } = new List<HitDice>();
@@ -45,15 +44,17 @@ namespace RPGproject.Source.CharacterCreation
         private string Flaws { get; set; }
         private int age;
         public int Age { get { return age; } set { age = value; } }
-        private string height;
-        public string Height { get { return height; } set { height = value; } }
+        private string heightFeet;
+        private string heightInches;
+        public string HeightInFeet { get { return heightFeet; } set { heightFeet = value; } }
+        public string HeightInInches { get { return heightInches; } set { heightInches = value; } }
+        public string Height { get { return heightFeet + " feet, " + heightInches + " inches"; } }
         private double weight;
         public double Weight { get { return weight; } set { weight = value; } }
         public string GetFormattedWeight { get { return weight + " lbs"; } }
         private string Appearance { get; set; }
         private string CharacterBackstory { get; set; }
         //private List<Spellcaster> SpellcastingClasses { get; set; } = new List<Spellcaster>();
-        [SQLite.Net.Attributes.Ignore]
         private List<Feat> feats { get; set; } = new List<Feat>();
         public List<Feat> Feats { get { return feats; } set { feats = value; } }
 
@@ -73,7 +74,6 @@ namespace RPGproject.Source.CharacterCreation
             this.Bonds = Bonds;
             this.Flaws = Flaws;
             this.age = age;
-            this.height = height;
             this.Weight = weight;
             this.Appearance = Appearance;
             this.Alignment = Alignment;

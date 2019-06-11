@@ -29,6 +29,7 @@ namespace RPGproject.Source.UserData.Screens
         public CreatedCharactersPage()
         {
             this.InitializeComponent();
+            CharacterDB.RecoverCharacters();
             Characters = CreatedCharacters.UserCharacters;
 
             if (Characters.Count == 0)

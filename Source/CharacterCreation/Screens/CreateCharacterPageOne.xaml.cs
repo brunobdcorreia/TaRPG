@@ -38,10 +38,20 @@ namespace RPGproject.Source.CharacterCreation
         private void CharacterHeightFeet_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             PreventNonNumericInput(args);
+
+            if(args.NewText.Length > 3)
+            {
+                args.Cancel = true;
+            }
         }
         private void CharacterHeightInches_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             PreventNonNumericInput(args);
+
+            if(args.NewText.Length > 2)
+            {
+                args.Cancel = true;
+            }
 
             try
             {
@@ -127,7 +137,8 @@ namespace RPGproject.Source.CharacterCreation
                 DisplayBlankValueWarning();
             }
 
-            CharacterModel.GetCharacterModel.Height = CharacterHeightFeet.Text + " feet, " + CharacterHeightInches.Text + " inches";
+            CharacterModel.GetCharacterModel.HeightInFeet = CharacterHeightFeet.Text;
+            CharacterModel.GetCharacterModel.HeightInInches = CharacterHeightInches.Text;
 
             try
             {
@@ -289,6 +300,22 @@ namespace RPGproject.Source.CharacterCreation
 
             if (newValue >= 0)
                 CharacterHeightInches.Text = newValue.ToString();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(e.Parameter is Character)
+            {
+                Character c = (Character)e.Parameter;
+
+                CharacterName.Text = c.Name;
+                RaceSelector.SelectedItem = StandardLoader.Races.Find(x => x.Name == c.CharacterRace.Name);
+                ClassSelector.SelectedItem = StandardLoader.Classes.Find(x => x.Name == c.CharacterClass.Name);
+                CharacterAge.Text = c.Age.ToString();
+                CharacterHeightFeet.Text = c.HeightInFeet;
+                CharacterHeightInches.Text = c.HeightInInches;
+                CharacterWeight.Text = c.Weight.ToString();
+            }
         }
     }
 }

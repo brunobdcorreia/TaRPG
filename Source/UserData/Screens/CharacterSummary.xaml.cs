@@ -58,7 +58,7 @@ namespace RPGproject.Source.UserData.Screens
 
             if(result == ContentDialogResult.Primary)
             {
-                CreatedCharacters.UserCharacters.Remove(viewedCharacter);
+                CharacterDB.DeleteCharacter(viewedCharacter);
                 this.Frame.Navigate(typeof(CreatedCharactersPage));
             }
         }
