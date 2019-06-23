@@ -1,5 +1,6 @@
 ﻿using RPGproject.Source.CampaignCreation;
 using RPGproject.Source.CharacterCreation;
+using RPGproject.Source.UserData;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +21,8 @@ namespace RPGproject
 {
     public sealed partial class ResumoCampanha : Page
     {
+        CampaignModel model;
+
         private List<Character> addedCharacters;
         public ResumoCampanha()
         {
@@ -28,9 +31,35 @@ namespace RPGproject
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            CampaignModel model = (CampaignModel)e.Parameter;
-            CampaignName.Text = model.GetCampaignModel.CampaignName;
+            model = (CampaignModel)e.Parameter;
+            string aux = CampaignName.Text;
+            CampaignName.Text = aux + " " + model.GetCampaignModel.CampaignName;
+            //CampaignName.Text = CampaignName.Text + " " + model.GetCampaignModel.CampaignName;
             addedCharacters = model.GetCampaignModel.Characters;
+        }
+
+        private async void DisplayCreationConfirmation()
+        {
+            ContentDialog confirm = new ContentDialog
+            {
+                Title = "Confirm campaign creation.",
+                Content = "Are you sure you want to create a campaign with these settings?",
+                PrimaryButtonText = "Yes!",
+                CloseButtonText = "No!"
+            };
+
+            ContentDialogResult result = await confirm.ShowAsync();
+
+            if(result == ContentDialogResult.Primary)
+            {
+                CreatedCampaigns.AddCampaign(model.GetCampaignModel);
+                this.Frame.Navigate(typeof(MainPage));
+            }
+        }
+
+        private void Done_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayCreationConfirmation();
         }
     }
 }

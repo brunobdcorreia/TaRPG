@@ -9,7 +9,9 @@ namespace RPGproject.Source.CharacterCreation
     class CharacterModel
     {
         private static Character characterModel = null;
-        public static Character GetCharacterModel { get { return characterModel; } }
+        public static Character GetCharacterModel { get { return characterModel; } set { characterModel = value; } }
+        private static bool rolledAttributes = false;
+        public static bool RolledAttributes { get { return rolledAttributes; } set { rolledAttributes = value; } }
 
         public CharacterModel()
         {

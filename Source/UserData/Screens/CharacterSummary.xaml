@@ -23,28 +23,42 @@
         <TextBlock HorizontalAlignment="Left" Margin="50,435,0,0" Text="Class:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="50,495,0,0" Text="Height:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="50,555,0,0" Text="Weight:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,170,0,0" Text="Attributes:" FontSize="60" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="395,170,0,0" Text="Attributes and modifiers:" FontSize="60" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-440,121,0,0" TextWrapping="Wrap" Text="|" FontSize="250" VerticalAlignment="Top" Height="354"/>
         <TextBlock HorizontalAlignment="Center" Margin="-440,370,0,0" TextWrapping="Wrap" Text="|" FontSize="250" VerticalAlignment="Top" Height="354"/>
         <TextBlock HorizontalAlignment="Center" Margin="-80,250,0,0" Text="Strength:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-80,310,0,0" Text="Dexterity:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-10,370,0,0" Text="Constitution:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="-30,430,0,0" Text="Intelligence:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="-90,490,0,0" Text="Wisdom:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Center" Margin="-70,550,0,0" Text="Charisma:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-100,490,0,0" Text="Wisdom:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-80,550,0,0" Text="Charisma:" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        
         <TextBlock x:Name="CharacterName" HorizontalAlignment="Left" Margin="160,255,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="CharacterAge" HorizontalAlignment="Left" Margin="140,315,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="CharacterRace" HorizontalAlignment="Left" Margin="160,375,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="CharacterClass" HorizontalAlignment="Left" Margin="165,435,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="CharacterHeight" HorizontalAlignment="Left" Margin="190,495,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock x:Name="CharacterWeight" HorizontalAlignment="Left" Margin="195,555,0,0" Text="" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock x:Name="StrengthAtt" Margin="140,250,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="StrengthAtt" Margin="150,250,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
         <TextBlock x:Name="DexterityAtt" Margin="160,310,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
         <TextBlock x:Name="ConstitutionAtt" Margin="290,370,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
-        <TextBlock x:Name="IntelligenceAtt" Margin="250,430,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="IntelligenceAtt" Margin="260,430,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
         <TextBlock x:Name="WisdomAtt" Margin="100,490,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
         <TextBlock x:Name="CharismaAtt" Margin="150,550,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
 
+        <!-- <TextBlock x:Name="StrMod" Margin="350,250,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="DexMod" Margin="365,310,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="ConMod" Margin="500,370,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="IntMod" Margin="450,430,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="WisMod" Margin="330,490,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="ChaMod" Margin="350,550,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/> -->
+
+        <TextBlock x:Name="StrMod" Margin="500,250,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="DexMod" Margin="500,310,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="ConMod" Margin="500,370,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="IntMod" Margin="500,430,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="WisMod" Margin="500,490,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
+        <TextBlock x:Name="ChaMod" Margin="500,550,0,0" HorizontalAlignment="Center" Text="" FontSize="45"/>
 
         <Button Content="Back" FontSize="24" Style="{StaticResource CustomButton}" Background="DarkRed" Margin="30,43,0,0" VerticalAlignment="Top" Height="40" Width="124" Click="BackButton_Click"/>
         <Button Content="Edit character" FontSize="36" Background="DarkRed" Style="{StaticResource CustomButton}" Margin="0,500,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="85" Width="338" Click="EditCharacter_Click"/>

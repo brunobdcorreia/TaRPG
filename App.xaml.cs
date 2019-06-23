@@ -32,6 +32,9 @@ namespace RPGproject
         {
             DBAcess.initializeDB();
             this.InitializeComponent();
+            DBAccess.InitializeDB();
+            CharacterDB.Initialize();
+            CampaignDB.Initialize();
             this.Suspending += OnSuspending;
             
         }

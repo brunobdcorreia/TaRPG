@@ -5,6 +5,7 @@
     xmlns:local="using:RPGproject"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -13,7 +14,7 @@
             <Style TargetType="ComboBox">
                 <Setter Property="FontFamily" Value="/Assets/Fonts/Vecna.otf#Vecna"/>
             </Style>
-            
+
             <Style TargetType="TextBox">
                 <Setter Property="FontFamily" Value="/Assets/Fonts/Vecna.otf#Vecna"/>
             </Style>
@@ -22,25 +23,25 @@
                 <Setter Property="FontFamily" Value="/Assets/Fonts/Vecna.otf#Vecna"/>
             </Style>
         </Grid.Resources>
-        
+
         <TextBlock HorizontalAlignment="Center" Margin="0,26,0,0" Text="Character Creation" FontSize="80" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="CharacterName" HorizontalAlignment="Center" Header="Character name:" Margin="0,164,0,0" Text="" VerticalAlignment="Top" Height="53" Width="287"/>
-        <ComboBox x:Name="RaceSelector" Header="Choose a race" Margin="0,222,0,0" Width="286" HorizontalAlignment="Center"/>
-        <ComboBox x:Name="ClassSelector" Header="Choose a class" Margin="0,277,0,0" Width="286" HorizontalAlignment="Center"/>
-        <TextBox x:Name="CharacterAge" Header="Character age:" HorizontalAlignment="Center" Margin="0,337,0,0" Text="" VerticalAlignment="Top" Width="286" Height="53" BeforeTextChanging="CharacterAge_BeforeChanging"/>
-        <TextBox x:Name="CharacterHeightFeet" Text="0" Header="Feet" HorizontalAlignment="Left" Margin="817,431,0,0" VerticalAlignment="Top" Width="56" Height="51" BeforeTextChanging="CharacterHeightFeet_BeforeChanging"/>
-        <TextBox x:Name="CharacterHeightInches" Header="Inches" HorizontalAlignment="Center" Margin="-20,431,0,0" Height="51" Text="0" VerticalAlignment="Top" BeforeTextChanging="CharacterHeightInches_BeforeChanging"/>
-        <TextBox x:Name="CharacterWeight" Header="Character weight (In pounds):" HorizontalAlignment="Center" Margin="0,487,0,0" Text="" VerticalAlignment="Top" Width="286" Height="53" BeforeTextChanging="CharacterWeight_BeforeChanging"/>
-        <Button x:Name="NextButton" Content="Next" FontSize="24" Style="{StaticResource CustomButton}" Background="DarkRed" HorizontalAlignment="Center" Height="34" Width="251" Click="NextButton_Click" Margin="0,597,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BackButton" Content="Back" FontSize="24" Style="{StaticResource ResourceKey=CustomButton}" Background="DarkRed" HorizontalAlignment="Center" Height="34" Width="251" Margin="0,647,0,0" VerticalAlignment="Top" Click="BackButton_Click"/>
-        <TextBlock HorizontalAlignment="Center" Margin="-180,407,0,0" Text="Character height:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="PlusFeet" Content="" Background="DarkRed" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Margin="875,454,0,0" VerticalAlignment="Top" Width="12" Height="12" Click="PlusFeet_Click"/>
-        <Button x:Name="MinusFeet" Content="" Background="DarkRed" Margin="875,469,0,0" VerticalAlignment="Top" Width="12" Height="12" Click="MinusFeet_Click"/>
-        <TextBlock HorizontalAlignment="Center" Margin="-158,448,0,0" Text="+" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="16" PointerPressed="PlusFeetCallback"/>
-        <TextBlock HorizontalAlignment="Center" Margin="-158,463,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top" PointerPressed="MinusFeetCallback"/>
-        <Button x:Name="PlusInches" Background="DarkRed" Content="Button" Margin="984,454,0,0" VerticalAlignment="Top" Width="12" Height="12" Click="PlusInches_Click"/>
-        <Button x:Name="MinusInches" Background="DarkRed" Content="Button" Margin="984,469,0,0" VerticalAlignment="Top" Width="12" Height="12" Click="MinusInches_Click"/>
-        <TextBlock HorizontalAlignment="Center" Margin="60,448,0,0" Text="+" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="16" PointerPressed="PlusInchCallback"/>
-        <TextBlock HorizontalAlignment="Center" Margin="60,463,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top" PointerPressed="MinusInchCallback"/>
+        <TextBox x:Name="CharacterName" HorizontalAlignment="Center" Header="Character name:" Margin="0,164,0,0" Text="" FontSize="30" VerticalAlignment="Top" Height="83" Width="287"/>
+        <ComboBox x:Name="RaceSelector" Header="Choose a race" Margin="0,252,0,0" FontSize="30" Height="83" Width="287" HorizontalAlignment="Center"/>
+        <ComboBox x:Name="ClassSelector" Header="Choose a class" Margin="0,340,0,0" FontSize="30" Height="83" Width="287" HorizontalAlignment="Center"/>
+        <TextBox x:Name="CharacterAge" Header="Character age:" HorizontalAlignment="Center" Margin="0,420,0,0" Text="" FontSize="30" VerticalAlignment="Top" Width="286" Height="83" BeforeTextChanging="CharacterAge_BeforeChanging"/>
+        <TextBox x:Name="CharacterHeightFeet" Text="0" FontSize="30" Header="Feet" HorizontalAlignment="Left" Margin="817,556,0,0" VerticalAlignment="Top" Width="106" Height="87" BeforeTextChanging="CharacterHeightFeet_BeforeChanging"/>
+        <TextBox x:Name="CharacterHeightInches" Header="Inches" HorizontalAlignment="Center" Margin="185,556,0,0" Height="87" Width="106" Text="0" FontSize="30" VerticalAlignment="Top" BeforeTextChanging="CharacterHeightInches_BeforeChanging"/>
+        <TextBox x:Name="CharacterWeight" Header="Character weight:" HorizontalAlignment="Center" Margin="0,650,0,0" Text="" FontSize="30" VerticalAlignment="Top" Width="286" Height="83" BeforeTextChanging="CharacterWeight_BeforeChanging"/>
+        <Button x:Name="NextButton" Content="Next" FontSize="24" Style="{StaticResource CustomButton}" Background="DarkRed" HorizontalAlignment="Center" Height="34" Width="251" Click="NextButton_Click" Margin="0,750,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BackButton" Content="Back" FontSize="24" Style="{StaticResource ResourceKey=CustomButton}" Background="DarkRed" HorizontalAlignment="Center" Height="34" Width="251" Margin="0,800,0,0" VerticalAlignment="Top" Click="BackButton_Click"/>
+        <TextBlock HorizontalAlignment="Center" Margin="-57,515,0,0" Text="Character height:" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="PlusFeet" Content="" Background="DarkRed" Margin="-47,595,0,0" Width="18" Height="18" Click="PlusFeet_Click" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="MinusFeet" Content="" Background="DarkRed" Margin="928,625,0,0" VerticalAlignment="Top" Width="18" Height="18" Click="MinusFeet_Click"/>
+        <TextBlock HorizontalAlignment="Center" Foreground="White" Margin="-45,586,0,0" Text="+" FontSize="30" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="26" PointerPressed="PlusFeetCallback"/>
+        <TextBlock HorizontalAlignment="Center" Foreground="White" Margin="-45,616,0,0" Text="-" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top" PointerPressed="MinusFeetCallback"/>
+        <Button x:Name="PlusInches" Background="DarkRed" Content="Button" Margin="320,595,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="18" Height="18" Click="PlusInches_Click"/>
+        <Button x:Name="MinusInches" Background="DarkRed" Content="Button" Margin="320,625,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="18" Height="18" Click="MinusInches_Click"/>
+        <TextBlock HorizontalAlignment="Center" Foreground="White" Margin="321,586,0,0" Text="+" FontSize="30" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Top" Height="26" PointerPressed="PlusInchCallback"/>
+        <TextBlock HorizontalAlignment="Center" Foreground="White" Margin="321,615,0,0" Text="-" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top" PointerPressed="MinusInchCallback"/>
     </Grid>
 </Page>

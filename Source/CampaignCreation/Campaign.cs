@@ -15,10 +15,13 @@ namespace RPGproject.Source.CampaignCreation
         public int NumberOfPlayers { get { return numberOfPlayers; } }
         private List<Character> characters;
         public List<Character> Characters { get { return characters; } set { characters = value; } }
+        private List<string> campaignEvents;
+        public List<string> CampaignEvent { get { return campaignEvents; } }
 
         public Campaign()
         {
             characters = new List<Character>();
+            campaignEvents = new List<string>();
         }
     }
 }

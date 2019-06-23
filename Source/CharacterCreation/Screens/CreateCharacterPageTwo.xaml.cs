@@ -18,13 +18,15 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// O modelo de item de Página em Branco está documentado em https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace RPGproject.Source.CharacterCreation
 {
     public sealed partial class CreateCharacterPageTwo : Page
     {
         private bool rolled = false;
+        private Character prevCharacter;
+        private List<int> results = new List<int>();
+
         public CreateCharacterPageTwo()
         {
             this.InitializeComponent();            
@@ -39,7 +41,6 @@ namespace RPGproject.Source.CharacterCreation
 
             else
             {
-
                 RequestUserConfirmation();
             }
         }      
@@ -57,6 +58,7 @@ namespace RPGproject.Source.CharacterCreation
             ContentDialogResult result = await requestConfirmation.ShowAsync();
 
             if(result == ContentDialogResult.Primary)
+<<<<<<< HEAD
             {
                 List<CharAttribute> charAttributes = CreateAttributeList();
 
@@ -74,12 +76,20 @@ namespace RPGproject.Source.CharacterCreation
 
                 //CharacterDBLinker.InitializeDatabase();
                 //CharacterDBLinker.AddCharacter(CharacterModel.GetCharacterModel);
+=======
+            {                         
+                if(prevCharacter != null)
+                    CharacterDB.DeleteCharacter(prevCharacter);
+
+                CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
+                this.Frame.Navigate(typeof(MainPage));              
+>>>>>>> upstream/master
             }
         }
 
         private void BackButton_Clicked(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(CreateCharacterPageOne));
+            this.Frame.Navigate(typeof(CreateCharacterPageOne), CharacterModel.GetCharacterModel);
         }
 
         private void Strength_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
@@ -171,9 +181,18 @@ namespace RPGproject.Source.CharacterCreation
             ContentDialogResult result = await rollOnceWarning.ShowAsync();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(e.Parameter is string && !string.IsNullOrEmpty((string)e.Parameter))
+            {
+                prevCharacter = new Character();
+                prevCharacter.Name = (string)e.Parameter;
+            }
+        }
+
         private void RollAttributes(object sender, RoutedEventArgs e)
         {
-            if(rolled)
+            if(rolled || CharacterModel.RolledAttributes)
             {
                 DisplayRollOnceWarning();
                 return;
@@ -181,7 +200,6 @@ namespace RPGproject.Source.CharacterCreation
 
             Random rand = new Random();
             List<int> rolls = new List<int>();
-            List<int> results = new List<int>();
             int sum = 0;
 
             for (int i = 0; i < 6; i++)
@@ -205,9 +223,54 @@ namespace RPGproject.Source.CharacterCreation
             Intelligence.Text = results.ElementAt(3).ToString();
             Wisdom.Text = results.ElementAt(4).ToString();
             Charisma.Text = results.ElementAt(5).ToString();
+            DisplayAttributeModifiers();
 
+            List<CharAttribute> charAttributes = CreateAttributeList();
+            List<int> attributeModifiers = CreateAttributeModifierList();
+
+            if (charAttributes != null && attributeModifiers != null)
+            {
+                Debug.WriteLine("Nao ta null");
+                CharacterModel.GetCharacterModel.Attributes = charAttributes;
+                CharacterModel.GetCharacterModel.AttributeModifiers = attributeModifiers;
+            }
+
+            else
+            {
+                DisplayInvalidValueWarning();
+                return;
+            }
+
+            CharacterModel.RolledAttributes = true;
             rolled = true;
             RollAttributesButton.Background = RollAttributesButton.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
+        }
+
+        private int CalculateModifier(int value)
+        {
+            return (int)Math.Floor((double)(value - 10) / 2);
+        }
+
+        private List<int> CreateAttributeModifierList()
+        {
+            List<int> modifiers = new List<int>();
+
+            for(int i = 0; i < 6; i++)
+            {
+                modifiers.Add(CalculateModifier(results.ElementAt(i)));
+            }
+
+            return modifiers;
+        }
+
+        private void DisplayAttributeModifiers()
+        {
+            StrMod.Text = CalculateModifier(results.ElementAt(0)).ToString();
+            DexMod.Text = CalculateModifier(results.ElementAt(1)).ToString();
+            ConMod.Text = CalculateModifier(results.ElementAt(2)).ToString();
+            IntMod.Text = CalculateModifier(results.ElementAt(3)).ToString();
+            WisMod.Text = CalculateModifier(results.ElementAt(4)).ToString();
+            ChaMod.Text = CalculateModifier(results.ElementAt(5)).ToString();
         }
 
         private List<CharAttribute> CreateAttributeList()

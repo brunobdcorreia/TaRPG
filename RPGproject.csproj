@@ -144,8 +144,11 @@
     <Compile Include="Source\CharacterCreation\Screens\CreateCharacterPageTwo.xaml.cs">
       <DependentUpon>CreateCharacterPageTwo.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Source\Data\CharacterDB.cs" />
     <Compile Include="Source\Data\DBAcess.cs" />
+=======
+>>>>>>> upstream/master
     <Compile Include="Source\CharacterCreation\Entity.cs" />
     <Compile Include="Source\CharacterCreation\Feat.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -159,7 +162,14 @@
     <Compile Include="Source\CharacterCreation\SavingThrow.cs" />
     <Compile Include="Source\CharacterCreation\Skill.cs" />
     <Compile Include="Source\CharacterCreation\StandardLoader.cs" />
+    <Compile Include="Source\Screens\MainCampaignScreen.xaml.cs">
+      <DependentUpon>MainCampaignScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Source\UserData\CampaignDB.cs" />
+    <Compile Include="Source\UserData\CharacterDB.cs" />
+    <Compile Include="Source\UserData\CreatedCampaigns.cs" />
     <Compile Include="Source\UserData\CreatedCharacters.cs" />
+    <Compile Include="Source\UserData\DBAccess.cs" />
     <Compile Include="Source\UserData\Screens\CharacterSummary.xaml.cs">
       <DependentUpon>CharacterSummary.xaml</DependentUpon>
     </Compile>
@@ -256,6 +266,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Source\Screens\MainCampaignScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Source\UserData\Screens\CharacterSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,8 +286,8 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>
-    <PackageReference Include="SQLite.Net-PCL">
-      <Version>3.1.1</Version>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.110</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite">
       <Version>1.0.110</Version>
@@ -282,9 +296,6 @@
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
-    </SDKReference>
-    <SDKReference Include="SQLite.UWP.2015, Version=3.28.0">
-      <Name>SQLite for Universal Windows Platform</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup />

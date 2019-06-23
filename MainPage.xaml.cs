@@ -44,5 +44,10 @@ namespace RPGproject
         {
             this.Frame.Navigate(typeof(CreatedCharactersPage));
         }
+
+        private void ViewOngoingCampaigns(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
