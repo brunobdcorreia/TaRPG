@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ANDROID_TARPG.CreatedCharactersPage"
+             xmlns:data="using:ANDROID_TARPG"
+            xmlns:reference="using:ANDROID_TARPG"
+            >
+    <ContentPage.Content>
+        <StackLayout>
+        <Grid Margin="20,100,20,50">
+           
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <GridView x:Name="CharacterGridView" ItemsSource="{x:Bind Characters}" IsItemClickEnabled="True" ItemClick="CharacterGridView_ItemClick">
+
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Character">
+                        <StackPanel HorizontalAlignment="Center">
+                            <Image Width="300" Height="200" Source="{x:Bind CharacterClass.ClassIcon}"/>
+                            <TextBlock FontSize="36" FontFamily="/Assets/Fonts/Vecna.otf#Vecna" Text="{x:Bind FirstDescription}" HorizontalAlignment="Center"/>
+                            <TextBlock FontSize="24" FontFamily="/Assets/Fonts/Vecna.otf#Vecna" Text="{x:Bind SecondDescription}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+
+            </GridView>
+
+            <Entry x:Name="NoCharacters" HorizontalOptions="Center" Text="" FontSize="100" VerticalOptions="Center"/>
+            <Entry HorizontalOptions="Center" Margin="0,-95,0,0" Text="Created Characters" FontSize="80"  VerticalOptions="Top"/>
+        </Grid>
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

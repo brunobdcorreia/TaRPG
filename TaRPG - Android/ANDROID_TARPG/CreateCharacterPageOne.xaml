@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ANDROID_TARPG.CreateCharacterPageOne">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label HorizontalOptions="Center" Margin="0,26,0,0" Text="Character Creation" FontSize="40"  VerticalOptions="Start"/>
+                <Entry                    
+                            x:Name="CharacterName"
+                            HorizontalOptions="Center"
+                            WidthRequest="286"
+                        VerticalOptions="Fill"
+                        Placeholder="Character name"
+                            />
+                <Picker
+                            Title="Choose a race"
+                            x:Name="RaceSelector"
+                            WidthRequest="286"
+                            HorizontalOptions="Center"
+                        VerticalOptions="Fill"
+
+
+                            ></Picker>
+                <Picker
+                            Title="Choose a class"
+                            x:Name="ClassSelector"
+                            WidthRequest="286"
+                            HorizontalOptions="Center"
+                        VerticalOptions="Fill"
+                            ></Picker>
+                <Entry                    
+                            x:Name="CharacterAge"   HorizontalOptions="Center"  WidthRequest="286" VerticalOptions="Fill" Placeholder="Character Age"
+                 />
+
+                <Entry x:Name="CharacterHeightFeet" Placeholder="Character Height Feet" HorizontalOptions="Center" VerticalOptions="Fill" WidthRequest="286" />
+                <Entry x:Name="CharacterHeightInches" Placeholder="Character Height Inches" HorizontalOptions="Center"  WidthRequest="286"  VerticalOptions="Fill"/>
+                <Entry x:Name="CharacterWeight" Placeholder="Character weight" HorizontalOptions="Center" VerticalOptions="Fill" WidthRequest="286" />
+                <Grid  WidthRequest="286" HorizontalOptions="Center" VerticalOptions="Fill" >
+                    <Grid WidthRequest="85" HorizontalOptions="Start" VerticalOptions="Fill" >
+                        <Entry x:Name="Strength" HorizontalOptions="Start"  WidthRequest="65" Placeholder="Str"/>
+                        <Label x:Name="StrMod" HorizontalOptions="End"  WidthRequest="20"/>
+                    </Grid>
+                    
+                    <Grid WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Fill" >
+                        <Entry x:Name="Charisma" HorizontalOptions="Start" WidthRequest="65" Placeholder="Cha"/>
+                        <Label x:Name="ChaMod" HorizontalOptions="End"  WidthRequest="20"/>
+                    </Grid>
+                    
+                    <Grid WidthRequest="85" HorizontalOptions="End" VerticalOptions="Fill" >
+                        <Entry x:Name="Wisdom" HorizontalOptions="Start" WidthRequest="65" Placeholder="Wis"/>
+                        <Label x:Name="WisMod" HorizontalOptions="End"  WidthRequest="20"/>
+                    </Grid>
+
+                </Grid>
+                <Grid  WidthRequest="286" HorizontalOptions="Center" VerticalOptions="Fill" >
+                    <Grid WidthRequest="90" HorizontalOptions="Start" >
+                        <Entry x:Name="Intelligence"  HorizontalOptions="Start"  WidthRequest="65" Placeholder="Int"/>
+                        <Label x:Name="IntMod" HorizontalOptions="End"  WidthRequest="20"/>
+                    </Grid>
+                        
+                    <Grid WidthRequest="90" HorizontalOptions="Center">
+                        <Entry x:Name="Constitution" HorizontalOptions="Start" WidthRequest="65"  Placeholder="Con"/>
+                        <Label x:Name="ConMod" HorizontalOptions="End"  WidthRequest="20"/>
+                    </Grid>
+                    
+                    <Grid WidthRequest="90" HorizontalOptions="End">                        
+                        <Entry x:Name="Dexterity" HorizontalOptions="Start" WidthRequest="65"  Placeholder="Dex"/>
+                        <Label x:Name="DexMod" HorizontalOptions="End"  WidthRequest="20"/>
+                    </Grid>
+                    
+
+
+
+                </Grid>
+     
+                <Button
+                    Text ="ROLL"
+                    x:Name="RollAttributesButton"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                    BackgroundColor="DarkRed"
+                    BorderColor="Black"
+                    TextColor="White"
+
+                    BorderWidth="0.7"
+                    CornerRadius="8"
+                    WidthRequest="186"
+                    Clicked="Roll"  />
+                <Button
+                    Text ="CREAT"
+                    x:Name="CreatCharacter"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                    BackgroundColor="DarkRed"
+                    BorderColor="Black"
+                    TextColor="White"
+
+                    BorderWidth="0.7"
+                    CornerRadius="8"
+                    WidthRequest="186"
+                    Clicked="Creat"  />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+
+
+
+
+
+
+
