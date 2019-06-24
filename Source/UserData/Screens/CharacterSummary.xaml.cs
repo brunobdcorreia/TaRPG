@@ -1,5 +1,4 @@
 ﻿using RPGproject.Source.CharacterCreation;
-using RPGproject.Source.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -81,12 +80,7 @@ namespace RPGproject.Source.UserData.Screens
 
             if(result == ContentDialogResult.Primary)
             {
-<<<<<<< HEAD
-                CreatedCharacters.UserCharacters.Remove(viewedCharacter);
-                CharacterDB.deleteCharacter(viewedCharacter.characterID);
-=======
                 CharacterDB.DeleteCharacter(viewedCharacter);
->>>>>>> upstream/master
                 this.Frame.Navigate(typeof(CreatedCharactersPage));
             }
         }

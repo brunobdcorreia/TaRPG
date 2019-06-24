@@ -31,7 +31,13 @@ namespace RPGproject.Source.UserData
     [Constitution] INTEGER NOT NULL,
     [Intelligence] INTEGER NOT NULL,
     [Wisdom] INTEGER NOT NULL,
-    [Charisma] INTEGER NOT NULL
+    [Charisma] INTEGER NOT NULL,
+    [StrMod] INTEGER NOT NULL,
+    [DexMod] INTEGER NOT NULL,
+    [IntMod] INTEGER NOT NULL,
+    [WisMod] INTEGER NOT NULL,
+    [ConMod] INTEGER NOT NULL,
+    [ChaMod] INTEGER NOT NULL
     )";
 
         public static void Initialize()

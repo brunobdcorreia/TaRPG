@@ -1,5 +1,4 @@
-﻿using RPGproject.Source.Data;
-using RPGproject.Source.UserData;
+﻿using RPGproject.Source.UserData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -58,32 +57,12 @@ namespace RPGproject.Source.CharacterCreation
             ContentDialogResult result = await requestConfirmation.ShowAsync();
 
             if(result == ContentDialogResult.Primary)
-<<<<<<< HEAD
-            {
-                List<CharAttribute> charAttributes = CreateAttributeList();
-
-                if (charAttributes != null)
-                    CharacterModel.GetCharacterModel.Attributes = charAttributes;
-                else
-                {
-                    DisplayInvalidValueWarning();
-                    return;
-                }
-                
-                CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);
-                CharacterDB.insertCharacter(CharacterModel.GetCharacterModel);
-                this.Frame.Navigate(typeof(MainPage));
-
-                //CharacterDBLinker.InitializeDatabase();
-                //CharacterDBLinker.AddCharacter(CharacterModel.GetCharacterModel);
-=======
             {                         
                 if(prevCharacter != null)
                     CharacterDB.DeleteCharacter(prevCharacter);
 
                 CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
                 this.Frame.Navigate(typeof(MainPage));              
->>>>>>> upstream/master
             }
         }
 
