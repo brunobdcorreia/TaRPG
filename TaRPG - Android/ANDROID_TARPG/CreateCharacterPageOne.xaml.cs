@@ -17,7 +17,7 @@ namespace ANDROID_TARPG
         private bool rolled = false;
         private Character prevCharacter;
         private List<int> results = new List<int>();
-
+        private bool cancel = false;
 
         public CreateCharacterPageOne()
         {
@@ -26,11 +26,38 @@ namespace ANDROID_TARPG
             loader.LoadStandardValues();
             this.RaceSelector.SetBinding(Picker.ItemsSourceProperty, new Binding() { Source = loader.GetCharRaces() });
             this.ClassSelector.SetBinding(Picker.ItemsSourceProperty, new Binding() { Source = loader.GetCharClasses() });
+            rolled = false;
+            cancel = false;
+            CharacterModel.RolledAttributes = false;
+
         }
 
         private async void CreateCharacter(object sender, EventArgs e)
         {
+
             await Navigation.PopAsync();
+
+        }
+
+
+        private async void cancelCharacter()
+        {
+            ConfirmConfig config = new ConfirmConfig()
+            {
+                Message = "Are you sure you want to cancel this character's creation?",
+                OkText = "Yes",
+                CancelText = "No",
+                Title = "Cancel character creation?"
+
+            };
+            var result = await UserDialogs.Instance.ConfirmAsync(config);
+            if (result)
+            {
+                CharacterModel.RolledAttributes = false;
+                rolled = false;
+                cancel = true;
+            }
+
         }
         private void Roll(object sender, EventArgs e)
         {
@@ -39,10 +66,26 @@ namespace ANDROID_TARPG
 
         private async void Creat(object sender, EventArgs e)
         {
-            SetCharacterPhysicalAttributes();
-            CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
+            if (string.IsNullOrEmpty(Strength.Text)|| string.IsNullOrEmpty(Dexterity.Text) || string.IsNullOrEmpty(Constitution.Text) 
+                || string.IsNullOrEmpty(Charisma.Text) || string.IsNullOrEmpty(Wisdom.Text) || string.IsNullOrEmpty(Intelligence.Text)
+                || string.IsNullOrEmpty(CharacterAge.Text) || string.IsNullOrEmpty(CharacterName.Text) || string.IsNullOrEmpty(CharacterWeight.Text)
+                || string.IsNullOrEmpty(CharacterHeightFeet.Text) || string.IsNullOrEmpty(CharacterHeightInches.Text)
+                || string.IsNullOrEmpty(RaceSelector.SelectedItem as String) || string.IsNullOrEmpty(ClassSelector.SelectedItem as String))
+            {
+                DisplayBlankValueWarning();
+            }
+            else
+            {
+                var result = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to create this character?", "Confirm character creation", "Yes!", "No, wait!");
 
-            await Navigation.PopToRootAsync();
+                if (result)
+                {
+                    SetCharacterPhysicalAttributes();
+                    CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
+                    CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);
+                    await Navigation.PopToRootAsync();
+                }
+            }
         }
 
 
@@ -224,7 +267,6 @@ namespace ANDROID_TARPG
         private async void DisplayRollOnceWarning()
         {
             await UserDialogs.Instance.AlertAsync("You can only roll attribute values once.", "Already rolled attribute values", "Ok");
-
 
         }
         private async void DisplayInvalidValueWarning()

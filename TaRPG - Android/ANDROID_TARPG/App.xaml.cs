@@ -9,7 +9,7 @@ namespace ANDROID_TARPG
         public App()
         {
             InitializeComponent();
-            //DBAccess.InitializeDB();
+            DBAccess.InitializeDB();
             MainPage = new NavigationPage(new MainPage());
             MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.DarkRed);
             MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.White);

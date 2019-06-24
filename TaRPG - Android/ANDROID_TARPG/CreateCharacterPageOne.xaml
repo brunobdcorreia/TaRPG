@@ -33,42 +33,42 @@
                         VerticalOptions="Fill"
                             ></Picker>
                 <Entry                    
-                            x:Name="CharacterAge"   HorizontalOptions="Center"  WidthRequest="286" VerticalOptions="Fill" Placeholder="Character Age"
+                            x:Name="CharacterAge"   HorizontalOptions="Center"  WidthRequest="286" VerticalOptions="Fill" Placeholder="Character Age" Keyboard="Numeric"
                  />
 
-                <Entry x:Name="CharacterHeightFeet" Placeholder="Character Height Feet" HorizontalOptions="Center" VerticalOptions="Fill" WidthRequest="286" />
-                <Entry x:Name="CharacterHeightInches" Placeholder="Character Height Inches" HorizontalOptions="Center"  WidthRequest="286"  VerticalOptions="Fill"/>
-                <Entry x:Name="CharacterWeight" Placeholder="Character weight" HorizontalOptions="Center" VerticalOptions="Fill" WidthRequest="286" />
+                <Entry x:Name="CharacterHeightFeet" Placeholder="Character Height Feet" HorizontalOptions="Center" VerticalOptions="Fill" WidthRequest="286" Keyboard="Numeric" />
+                <Entry x:Name="CharacterHeightInches" Placeholder="Character Height Inches" HorizontalOptions="Center"  WidthRequest="286"  VerticalOptions="Fill" Keyboard="Numeric"/>
+                <Entry x:Name="CharacterWeight" Placeholder="Character weight" HorizontalOptions="Center" VerticalOptions="Fill" WidthRequest="286" Keyboard="Numeric" />
                 <Grid  WidthRequest="286" HorizontalOptions="Center" VerticalOptions="Fill" >
                     <Grid WidthRequest="85" HorizontalOptions="Start" VerticalOptions="Fill" >
-                        <Entry x:Name="Strength" HorizontalOptions="Start"  WidthRequest="65" Placeholder="Str"/>
+                        <Entry x:Name="Strength" HorizontalOptions="Start"  WidthRequest="65" Placeholder="Str" Keyboard="Numeric"/>
                         <Label x:Name="StrMod" HorizontalOptions="End"  WidthRequest="20"/>
                     </Grid>
                     
                     <Grid WidthRequest="90" HorizontalOptions="Center" VerticalOptions="Fill" >
-                        <Entry x:Name="Charisma" HorizontalOptions="Start" WidthRequest="65" Placeholder="Cha"/>
+                        <Entry x:Name="Charisma" HorizontalOptions="Start" WidthRequest="65" Placeholder="Cha" Keyboard="Numeric"/>
                         <Label x:Name="ChaMod" HorizontalOptions="End"  WidthRequest="20"/>
                     </Grid>
                     
                     <Grid WidthRequest="85" HorizontalOptions="End" VerticalOptions="Fill" >
-                        <Entry x:Name="Wisdom" HorizontalOptions="Start" WidthRequest="65" Placeholder="Wis"/>
+                        <Entry x:Name="Wisdom" HorizontalOptions="Start" WidthRequest="65" Placeholder="Wis" Keyboard="Numeric"/>
                         <Label x:Name="WisMod" HorizontalOptions="End"  WidthRequest="20"/>
                     </Grid>
 
                 </Grid>
                 <Grid  WidthRequest="286" HorizontalOptions="Center" VerticalOptions="Fill" >
                     <Grid WidthRequest="90" HorizontalOptions="Start" >
-                        <Entry x:Name="Intelligence"  HorizontalOptions="Start"  WidthRequest="65" Placeholder="Int"/>
+                        <Entry x:Name="Intelligence"  HorizontalOptions="Start"  WidthRequest="65" Placeholder="Int" Keyboard="Numeric"/>
                         <Label x:Name="IntMod" HorizontalOptions="End"  WidthRequest="20"/>
                     </Grid>
                         
                     <Grid WidthRequest="90" HorizontalOptions="Center">
-                        <Entry x:Name="Constitution" HorizontalOptions="Start" WidthRequest="65"  Placeholder="Con"/>
+                        <Entry x:Name="Constitution" HorizontalOptions="Start" WidthRequest="65"  Placeholder="Con" Keyboard="Numeric"/>
                         <Label x:Name="ConMod" HorizontalOptions="End"  WidthRequest="20"/>
                     </Grid>
                     
-                    <Grid WidthRequest="90" HorizontalOptions="End">                        
-                        <Entry x:Name="Dexterity" HorizontalOptions="Start" WidthRequest="65"  Placeholder="Dex"/>
+                    <Grid WidthRequest="90" HorizontalOptions="End">
+                        <Entry x:Name="Dexterity" HorizontalOptions="Start" WidthRequest="65"  Placeholder="Dex" Keyboard="Numeric"/>
                         <Label x:Name="DexMod" HorizontalOptions="End"  WidthRequest="20"/>
                     </Grid>
                     

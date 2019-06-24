@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//using SQLite;
-using System.Diagnostics;
-using System.Data.SQLite;
+using SQLite;
+using Mono.Data.Sqlite;
+using ANDROID_TARPG;
 
 namespace ANDROID_TARPG
 {
@@ -42,50 +39,35 @@ namespace ANDROID_TARPG
 
         public static void Initialize()
         {
-            using (SQLiteCommand comm = new SQLiteCommand(DBAccess.charDBConnection))
-            {
-                DBAccess.OpenCharDBConnection();
-                comm.CommandText = CreateTableQuery;
-                comm.ExecuteNonQuery();
-                DBAccess.CloseCharDBConnection();
-            }
+            DBAccess.Execute(CreateTableQuery);       
 
-           RecoverCharacters();
+            RecoverCharacters();
         }
 
         public static void InsertCharacter(Character C)
         {
-            using (SQLiteCommand com = new SQLiteCommand(DBAccess.charDBConnection))
-            {
-                DBAccess.OpenCharDBConnection();
-                com.CommandText = InsertCommand(C);
-                com.ExecuteNonQuery();
-                DBAccess.CloseCharDBConnection();
-            }
+            DBAccess.Execute(InsertCommand(C));
+
         }
 
         public static void DeleteCharacter(Character character)
         {
-            using (SQLiteCommand com = new SQLiteCommand(DBAccess.charDBConnection))
-            {
-                DBAccess.OpenCharDBConnection();
-                com.CommandText = "DELETE FROM Character Where Name = @name";
-                com.Parameters.AddWithValue("@name", character.Name);
-                com.ExecuteNonQuery();
-                CreatedCharacters.DeleteCharacter(character);
-                DBAccess.CloseCharDBConnection();
-            }
+            DBAccess.Execute("DELETE FROM Character Where Name = " + character.Name);
+            CreatedCharacters.DeleteCharacter(character);
+
         }
 
         public static void RecoverCharacters()
         {
-            using (SQLiteCommand com = new SQLiteCommand(DBAccess.charDBConnection))
+            DBAccess.OpenCharDBConnectionReader();
+
+            using (SqliteCommand com = new SqliteCommand())
             {
-                DBAccess.OpenCharDBConnection();
                 com.CommandText = "Select * FROM Character";
+                com.Connection = DBAccess.charDBConnectionReader;
                 com.ExecuteNonQuery();
 
-                using (SQLiteDataReader reader = com.ExecuteReader())
+                using (SqliteDataReader reader = com.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -93,8 +75,10 @@ namespace ANDROID_TARPG
                     }
                 }
 
-                DBAccess.CloseCharDBConnection();
+                
             }
+
+            DBAccess.CloseCharDBConnectionReader();
         }
 
         private static string InsertCommand(Character C)
@@ -107,11 +91,10 @@ namespace ANDROID_TARPG
                 + C.Attributes.Find(x => x.Name == "Wisdom").Value + "','" + C.Attributes.Find(x => x.Name == "Charisma").Value + "','" + C.AttributeModifiers.ElementAt(0) + 
                 "','" + C.AttributeModifiers.ElementAt(1) + "','" + C.AttributeModifiers.ElementAt(2) + "','" + C.AttributeModifiers.ElementAt(3) + "','" 
                 + C.AttributeModifiers.ElementAt(4) + "','" + C.AttributeModifiers.ElementAt(5) + "')";
-
             return command;
         }
 
-        private static Character GetCharacterModel(SQLiteDataReader reader)
+        private static Character GetCharacterModel(SqliteDataReader reader)
         {
             StandardLoader loader = new StandardLoader();
             loader.LoadStandardValues();
@@ -174,20 +157,22 @@ namespace ANDROID_TARPG
         {
             int characterId = 0;
 
-            using (SQLiteCommand comm = new SQLiteCommand(DBAccess.charDBConnection))
-            {
-                DBAccess.OpenCharDBConnection();
-                comm.CommandText = "SELECT ID FROM Character WHERE Name = @name";
-                comm.Parameters.AddWithValue("@name", c.Name);
-                comm.ExecuteNonQuery();
+            DBAccess.OpenCharDBConnectionReader();
 
-                using (SQLiteDataReader reader = comm.ExecuteReader())
+            using (SqliteCommand com = new SqliteCommand())
+            {
+                com.CommandText = "SELECT ID FROM Character WHERE Name = " + c.Name;
+                com.Connection = DBAccess.charDBConnectionReader;
+                com.ExecuteNonQuery();
+
+                using (SqliteDataReader reader = com.ExecuteReader())
                 {
                     characterId = (int)(long)reader["ID"];
                 }
-            }
 
-            return characterId;
+
+            }
+             return characterId;          
         }
     }
 }
