@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using ANDROID_TARPG.Source.Connection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,7 @@ namespace ANDROID_TARPG
                 if (result)
                 {
                     SetCharacterPhysicalAttributes();
+                    Client.SendData("dark");
                     CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
                     CreatedCharacters.AddCharacter(CharacterModel.GetCharacterModel);
                     await Navigation.PopToRootAsync();
