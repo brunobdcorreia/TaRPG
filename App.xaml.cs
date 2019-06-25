@@ -1,4 +1,5 @@
-﻿using RPGproject.Source.UserData;
+﻿using RPGproject.Source.Connection;
+using RPGproject.Source.UserData;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,6 +32,7 @@ namespace RPGproject
         {
             this.InitializeComponent();
             DBAccess.InitializeDB();
+            Server.InitializeServer();
             CharacterDB.Initialize();
             CampaignDB.Initialize();
             this.Suspending += OnSuspending;
