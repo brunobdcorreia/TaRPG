@@ -99,7 +99,7 @@ namespace ANDROID_TARPG
 
                     SetCharacterPhysicalAttributes();
                     CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
-                    CharacterDB.SendCharacter(CharacterModel.GetCharacterModel);
+                    //CharacterDB.SendCharacter(CharacterModel.GetCharacterModel);
                     await Navigation.PopToRootAsync();
                 }
             }
