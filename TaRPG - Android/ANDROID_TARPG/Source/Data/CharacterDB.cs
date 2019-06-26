@@ -58,7 +58,7 @@ namespace ANDROID_TARPG
             }
             DBAccess.CloseCharDBConnectionReader();
 
-            Client.SendData(InsertCommand(C));
+            //Client.SendData(InsertCommand(C));
         }
 
         public static void SendCharacter(Character C)
