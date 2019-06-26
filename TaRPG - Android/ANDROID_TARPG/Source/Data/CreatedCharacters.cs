@@ -16,7 +16,7 @@ namespace ANDROID_TARPG
         {
             foreach(Character c in userCharacters)
             {
-                if (character.Name.Equals(c.Name))
+                if (character.CharacterID.Equals(c.CharacterID))
                     return;
             }
 

@@ -10,7 +10,38 @@
             >
     <ContentPage.Content>
         <StackLayout>
-      
-    </StackLayout>
+            <Label
+                x:Name="Title"
+                Text="Created Characters"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="35"
+                TextColor="Black"
+            />
+            <Label
+                x:Name="NoCharacters"
+                Text=""
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="15"
+                TextColor="Black" 
+            />
+
+            <ListView x:Name="CreatedCharactersView" ItemSelected="CharacterSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label 
+                                Text="{Binding GetDescription}"
+                                TextColor="DarkRed"          
+                                FontSize="20"
+                             ></Label>
+       
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

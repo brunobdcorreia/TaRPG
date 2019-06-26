@@ -20,6 +20,8 @@ namespace ANDROID_TARPG
         //FirstDescription and SecondDescription are used when describing the characters on the CreatedCharactersPage.
         public string FirstDescription { get { return this.Name + ", " + this.Age; } }
         public string SecondDescription { get { return this.CharacterRace.Name + " " + this.characterClass.Name; } }
+        public string GetDescription { get { return this.FirstDescription + "    " + this.SecondDescription; } }
+
         public Class CharacterClass { get { return characterClass; } set { characterClass = value; } }
         private Race characterRace { get; set; }
         public Race CharacterRace { get { return characterRace; } set { characterRace = value; } }

@@ -3,6 +3,7 @@ using RPGproject.Source.UserData.Screens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -31,6 +32,7 @@ namespace RPGproject.Source.CharacterCreation
             loader.LoadStandardValues();
             this.RaceSelector.SetBinding(ComboBox.ItemsSourceProperty, new Binding() { Source = loader.GetCharRaces() });
             this.ClassSelector.SetBinding(ComboBox.ItemsSourceProperty, new Binding() { Source = loader.GetCharClasses() });
+            CharacterModel.RolledAttributes = false;
         }
 
         private void CharacterAge_BeforeChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
@@ -145,8 +147,9 @@ namespace RPGproject.Source.CharacterCreation
 
             try
             {
-                double weightValue = double.Parse(CharacterWeight.Text);
+                double weightValue = double.Parse(CharacterWeight.Text, CultureInfo.InvariantCulture);
                 CharacterModel.GetCharacterModel.Weight = weightValue;
+                Debug.WriteLine(CharacterModel.GetCharacterModel.Weight);
             }
 
             catch (System.FormatException ex)
@@ -312,14 +315,13 @@ namespace RPGproject.Source.CharacterCreation
                 Character c = (Character)e.Parameter;
                 prevCharacter = c.Name;
                 CharacterModel.GetCharacterModel = c;
-
                 CharacterName.Text = c.Name;
                 RaceSelector.SelectedItem = StandardLoader.Races.Find(x => x.Name == c.CharacterRace.Name);
                 ClassSelector.SelectedItem = StandardLoader.Classes.Find(x => x.Name == c.CharacterClass.Name);
                 CharacterAge.Text = c.Age.ToString();
                 CharacterHeightFeet.Text = c.HeightInFeet;
                 CharacterHeightInches.Text = c.HeightInInches;
-                CharacterWeight.Text = c.Weight.ToString();
+                CharacterWeight.Text = c.Weight.ToString().Replace(',','.');
             }
         }
     }

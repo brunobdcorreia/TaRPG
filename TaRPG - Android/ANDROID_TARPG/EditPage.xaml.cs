@@ -13,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace ANDROID_TARPG
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CreateCharacterPageOne : ContentPage
+    public partial class EditPage : ContentPage
     {
         private CharacterModel charModel = new CharacterModel();
         private bool rolled = false;
@@ -21,8 +21,9 @@ namespace ANDROID_TARPG
         private List<int> results = new List<int>();
         private bool cancel = false;
 
-        public CreateCharacterPageOne()
+        public EditPage(Character a)
         {
+            prevCharacter = a;
             InitializeComponent();
             StandardLoader loader = new StandardLoader();
             loader.LoadStandardValues();
@@ -31,7 +32,13 @@ namespace ANDROID_TARPG
             rolled = false;
             cancel = false;
             CharacterModel.RolledAttributes = false;
-          
+            CharacterName.Text = prevCharacter.Name;
+            RaceSelector.SelectedItem = StandardLoader.Races.Find(x => x.Name == prevCharacter.CharacterRace.Name);
+            ClassSelector.SelectedItem = StandardLoader.Classes.Find(x => x.Name == prevCharacter.CharacterClass.Name);
+            CharacterAge.Text = prevCharacter.Age.ToString();
+            CharacterHeightFeet.Text = prevCharacter.HeightInFeet;
+            CharacterHeightInches.Text = prevCharacter.HeightInInches;
+            CharacterWeight.Text = prevCharacter.Weight.ToString().Replace(',', '.');
 
         }
 
@@ -69,7 +76,7 @@ namespace ANDROID_TARPG
 
         private async void Creat(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Strength.Text)|| string.IsNullOrEmpty(Dexterity.Text) || string.IsNullOrEmpty(Constitution.Text) 
+            if (string.IsNullOrEmpty(Strength.Text) || string.IsNullOrEmpty(Dexterity.Text) || string.IsNullOrEmpty(Constitution.Text)
                 || string.IsNullOrEmpty(Charisma.Text) || string.IsNullOrEmpty(Wisdom.Text) || string.IsNullOrEmpty(Intelligence.Text)
                 || string.IsNullOrEmpty(CharacterAge.Text) || string.IsNullOrEmpty(CharacterName.Text) || string.IsNullOrEmpty(CharacterWeight.Text)
                 || string.IsNullOrEmpty(CharacterHeightFeet.Text) || string.IsNullOrEmpty(CharacterHeightInches.Text)
@@ -79,11 +86,16 @@ namespace ANDROID_TARPG
             }
             else
             {
-                var result = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to create this character?", "Confirm character creation", "Yes!", "No, wait!");
+                var result = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to edit this character?", "Confirm character edition", "Yes!", "No, wait!");
 
                 if (result)
                 {
+                    if (prevCharacter != null)
+                    {
 
+                        CharacterDB.DeleteCharacterbyID(prevCharacter);
+                        Client.SendData("EDITCHARACTER " + prevCharacter.Name);
+                    }
 
                     SetCharacterPhysicalAttributes();
                     CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
@@ -265,7 +277,7 @@ namespace ANDROID_TARPG
 
         private async void DisplayBlankValueWarning()
         {
-            await UserDialogs.Instance.AlertAsync("One or more fields have invalid values or no values.","Invalid value","Ok");
+            await UserDialogs.Instance.AlertAsync("One or more fields have invalid values or no values.", "Invalid value", "Ok");
 
         }
         private async void DisplayRollOnceWarning()
@@ -275,9 +287,9 @@ namespace ANDROID_TARPG
         }
         private async void DisplayInvalidValueWarning()
         {
-   
-            await UserDialogs.Instance.AlertAsync("One of the attribute values is invalid. Make sure the values are numerical and have no spaces or other characters surrounding them.","Invalid value","Ok");
- 
+
+            await UserDialogs.Instance.AlertAsync("One of the attribute values is invalid. Make sure the values are numerical and have no spaces or other characters surrounding them.", "Invalid value", "Ok");
+
         }
     }
 }

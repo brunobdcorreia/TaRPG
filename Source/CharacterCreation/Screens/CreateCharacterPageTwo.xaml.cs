@@ -28,7 +28,7 @@ namespace RPGproject.Source.CharacterCreation
 
         public CreateCharacterPageTwo()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
         }
 
         private void NextButton_Clicked(object sender, RoutedEventArgs e)
@@ -59,7 +59,10 @@ namespace RPGproject.Source.CharacterCreation
             if(result == ContentDialogResult.Primary)
             {                         
                 if(prevCharacter != null)
-                    CharacterDB.DeleteCharacter(prevCharacter);
+                {
+                    CharacterDB.DeleteCharacterbyID(CharacterModel.GetCharacterModel);
+                    Debug.WriteLine(CharacterModel.GetCharacterModel.CharacterID);
+                }
 
                 CharacterDB.InsertCharacter(CharacterModel.GetCharacterModel);
                 this.Frame.Navigate(typeof(MainPage));              

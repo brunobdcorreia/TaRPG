@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ANDROID_TARPG.ViewedCharacterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                x:Name="Title"
+                Text="Summary Character"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="35"
+                TextColor="Black"
+            />
+                <Label 
+                    x:Name="CharacterName"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Fill"
+                ></Label>
+                <Label 
+                    x:Name="CharacterAge"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+
+                ></Label>
+                <Label 
+                    x:Name="CharacterRace"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                ></Label>
+                <Label 
+                    x:Name="CharacterClass"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                ></Label>
+                <Label 
+                    x:Name="CharacterHeight"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                ></Label>
+                <Label 
+                    x:Name="CharacterWeight"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Center"
+                ></Label>
+                <Label 
+                    x:Name="StrengthAtt"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                                        VerticalOptions="Fill"
+                                        HorizontalOptions="Center"
+
+
+                    
+                ></Label>
+                <Label 
+                    x:Name="DexterityAtt"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                                        HorizontalOptions="Center"
+
+                ></Label>
+                <Label 
+                    x:Name="ConstitutionAtt"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                                        HorizontalOptions="Center"
+
+                ></Label>
+                <Label 
+                    x:Name="IntelligenceAtt"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                                        HorizontalOptions="Center"
+
+                ></Label>
+                <Label 
+                    x:Name="WisdomAtt"
+                    Text=""
+                    TextColor="DarkRed"          
+                    FontSize="20"
+                    VerticalOptions="Fill"
+                                        HorizontalOptions="Center"
+
+                ></Label>
+                <Label 
+                        x:Name="CharismaAtt"
+                        Text=""
+                        TextColor="DarkRed"          
+                        FontSize="20"
+                    VerticalOptions="Fill"
+                                        HorizontalOptions="Center"
+
+                ></Label>
+            <Button
+                Text ="Edit Character"
+                VerticalOptions="Fill"
+                HorizontalOptions="Center"
+                BackgroundColor="DarkRed"
+                BorderColor="Black"
+                TextColor="White"
+                FontSize="20"
+                BorderWidth="0.7"
+                CornerRadius="8"
+                WidthRequest="250"
+                HeightRequest="60"
+                Clicked="EditCharacter"  />
+            <Button
+                Text ="Delete Character"
+                VerticalOptions="Fill"
+                HorizontalOptions="Center"
+                BackgroundColor="DarkRed"
+                BorderColor="Black"
+                TextColor="White"
+                FontSize="20"
+                BorderWidth="0.7"
+                CornerRadius="8"
+                WidthRequest="250"
+                HeightRequest="60"
+                Clicked="DeleteCharacter"  />
+            <Button
+                Text ="Send Character"
+                VerticalOptions="Fill"
+                HorizontalOptions="Center"
+                BackgroundColor="DarkRed"
+                BorderColor="Black"
+                TextColor="White"
+                FontSize="20"
+                BorderWidth="0.7"
+                CornerRadius="8"
+                WidthRequest="250"
+                HeightRequest="60"
+                Clicked="SendCharacter"  />
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -3,6 +3,8 @@ using System.Linq;
 using SQLite;
 using Mono.Data.Sqlite;
 using ANDROID_TARPG;
+using ANDROID_TARPG.Source.Connection;
+using System.Globalization;
 
 namespace ANDROID_TARPG
 {
@@ -17,7 +19,7 @@ namespace ANDROID_TARPG
 	[Age]	INTEGER NOT NULL,
 	[HeightFeet]	TEXT NOT NULL,
     [HeightInches]  TEXT NOT NULL,
-	[Weight]	REAL NOT NULL,
+	[Weight]	TEXT NOT NULL,
 	[CharacterBackstory]	TEXT,
 	[Appearance]	TEXT,
 	[CharacterClass]	TEXT NOT NULL,
@@ -46,15 +48,58 @@ namespace ANDROID_TARPG
 
         public static void InsertCharacter(Character C)
         {
-            DBAccess.Execute(InsertCommand(C));
+            DBAccess.OpenCharDBConnectionReader();
 
+            using (SqliteCommand com = new SqliteCommand())            {
+
+                com.CommandText = InsertCommand(C);
+                com.Connection = DBAccess.charDBConnectionReader;
+                com.ExecuteNonQuery();
+            }
+            DBAccess.CloseCharDBConnectionReader();
+
+            Client.SendData(InsertCommand(C));
+        }
+
+        public static void SendCharacter(Character C)
+        {
+            Client.SendData(InsertCommand(C));
         }
 
         public static void DeleteCharacter(Character character)
         {
-            DBAccess.Execute("DELETE FROM Character Where Name = " + character.Name);
+            DBAccess.OpenCharDBConnectionReader();
+
+            using (SqliteCommand com = new SqliteCommand())
+            {
+
+                com.CommandText = "DELETE FROM Character Where Name = " +character.Name;
+                com.Connection = DBAccess.charDBConnectionReader;
+                com.ExecuteNonQuery();
+            }
+            DBAccess.CloseCharDBConnectionReader();
+           
+            //Client.SendData("DELETE FROM Character Where Name = " + character.Name);
             CreatedCharacters.DeleteCharacter(character);
 
+        }
+
+        public static void DeleteCharacterbyID(Character C)
+        {
+            DBAccess.OpenCharDBConnectionReader();
+
+            using (SqliteCommand com = new SqliteCommand())
+            {
+
+                com.CommandText = "DELETE FROM Character Where ID = " +C.CharacterID;
+                com.Connection = DBAccess.charDBConnectionReader;
+                com.ExecuteNonQuery();
+            }
+            DBAccess.CloseCharDBConnectionReader();
+
+            //Client.SendData("DELETE FROM Character Where ID = " + C.CharacterID);
+            CreatedCharacters.DeleteCharacter(C);
+         
         }
 
         public static void RecoverCharacters()
@@ -106,7 +151,7 @@ namespace ANDROID_TARPG
             character.Age = (int)(long)reader["Age"];
             character.HeightInFeet = (string)reader["HeightFeet"];
             character.HeightInInches = (string)reader["HeightInches"];
-            character.Weight = (double)reader["Weight"];
+            character.Weight = double.Parse(((string)reader["Weight"]).Replace(',', '.'), CultureInfo.InvariantCulture);
             //a.CharacterBackstory = (string)reader["CharacterBackstory"];
 
             List<CharAttribute> Attributes = new List<CharAttribute>();

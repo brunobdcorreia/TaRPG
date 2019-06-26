@@ -23,7 +23,7 @@ namespace ANDROID_TARPG
         }
         private async void ViewCharacter(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new CreatedCharactersPage());
 
         }
         private async void Connect(object sender, EventArgs e)
