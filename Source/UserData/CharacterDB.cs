@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using RPGproject.Source.CharacterCreation;
 using RPGproject.Source.UserData;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace RPGproject.Source.UserData
 {
@@ -21,7 +22,7 @@ namespace RPGproject.Source.UserData
 	[Age]	INTEGER NOT NULL,
 	[HeightFeet]	TEXT NOT NULL,
     [HeightInches]  TEXT NOT NULL,
-	[Weight]	REAL NOT NULL,
+	[Weight]	TEXT NOT NULL,
 	[CharacterBackstory]	TEXT,
 	[Appearance]	TEXT,
 	[CharacterClass]	TEXT NOT NULL,
@@ -31,8 +32,16 @@ namespace RPGproject.Source.UserData
     [Constitution] INTEGER NOT NULL,
     [Intelligence] INTEGER NOT NULL,
     [Wisdom] INTEGER NOT NULL,
-    [Charisma] INTEGER NOT NULL
+    [Charisma] INTEGER NOT NULL,
+    [StrMod] INTEGER NOT NULL,
+    [DexMod] INTEGER NOT NULL,
+    [IntMod] INTEGER NOT NULL,
+    [WisMod] INTEGER NOT NULL,
+    [ConMod] INTEGER NOT NULL,
+    [ChaMod] INTEGER NOT NULL
     )";
+
+        
 
         public static void Initialize()
         {
@@ -45,6 +54,29 @@ namespace RPGproject.Source.UserData
             }
 
             RecoverCharacters();
+        }
+        public static void executeCommand(string command)
+        {
+            using (SQLiteCommand com = new SQLiteCommand(DBAccess.charDBConnection))
+            {
+                DBAccess.OpenCharDBConnection();
+                com.CommandText = command;
+                com.ExecuteNonQuery();
+                DBAccess.CloseCharDBConnection();
+            }
+        }
+
+        public static void DeleteCharacterbyID(Character C)
+        {
+            using (SQLiteCommand com = new SQLiteCommand(DBAccess.charDBConnection))
+            {
+                DBAccess.OpenCharDBConnection();
+                com.CommandText = "DELETE FROM Character Where ID = @id";
+                com.Parameters.AddWithValue("@id", C.CharacterID);
+                com.ExecuteNonQuery();
+                CreatedCharacters.DeleteCharacter(C);
+                DBAccess.CloseCharDBConnection();
+            }
         }
 
         public static void InsertCharacter(Character C)
@@ -117,7 +149,7 @@ namespace RPGproject.Source.UserData
             character.Age = (int)(long)reader["Age"];
             character.HeightInFeet = (string)reader["HeightFeet"];
             character.HeightInInches = (string)reader["HeightInches"];
-            character.Weight = (double)reader["Weight"];
+            character.Weight = double.Parse(((string)reader["Weight"]).Replace(',','.'), CultureInfo.InvariantCulture);
             //a.CharacterBackstory = (string)reader["CharacterBackstory"];
 
             List<CharAttribute> Attributes = new List<CharAttribute>();

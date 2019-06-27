@@ -17,10 +17,10 @@ namespace RPGproject.Source.UserData
         {
             foreach(Character c in userCharacters)
             {
-                if (character.Name.Equals(c.Name))
+                if (character.CharacterID.Equals(c.CharacterID))
                     return;
             }
-
+            Debug.WriteLine(character.Weight);
             userCharacters.Add(character);
         }
 
@@ -28,6 +28,14 @@ namespace RPGproject.Source.UserData
         {
             Debug.WriteLine("Deleting " + character.Name);
             userCharacters.Remove(character);
+            foreach(Character c in userCharacters)
+            {
+                if (character.Name.Equals(c.Name))
+                {
+                    userCharacters.Remove(c);
+                    return;
+                }
+            }
         }
     }
 }

@@ -157,6 +157,7 @@
     <Compile Include="Source\CharacterCreation\SavingThrow.cs" />
     <Compile Include="Source\CharacterCreation\Skill.cs" />
     <Compile Include="Source\CharacterCreation\StandardLoader.cs" />
+    <Compile Include="Source\Connection\Server.cs" />
     <Compile Include="Source\Screens\MainCampaignScreen.xaml.cs">
       <DependentUpon>MainCampaignScreen.xaml</DependentUpon>
     </Compile>
@@ -280,6 +281,9 @@
     </PackageReference>
     <PackageReference Include="System.Data.SQLite">
       <Version>1.0.110</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Primitives">
+      <Version>4.3.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

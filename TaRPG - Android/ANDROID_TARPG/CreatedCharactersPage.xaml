@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ANDROID_TARPG.CreatedCharactersPage"
+             xmlns:data="using:ANDROID_TARPG"
+            xmlns:reference="using:ANDROID_TARPG"
+            >
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                x:Name="Title"
+                Text="Created Characters"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="35"
+                TextColor="Black"
+            />
+            <Label
+                x:Name="NoCharacters"
+                Text=""
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                FontSize="15"
+                TextColor="Black" 
+            />
+
+            <ListView x:Name="CreatedCharactersView" ItemSelected="CharacterSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label 
+                                Text="{Binding GetDescription}"
+                                TextColor="DarkRed"          
+                                FontSize="20"
+                             ></Label>
+       
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
